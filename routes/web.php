@@ -28,6 +28,9 @@ Route::get('/home2', [HomeController::class, 'index']);
 
 Route::get('/test/{id}', [HomeController::class, 'test']);
 
+//admin panel route
+Route::get('/admin', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name("adminHome");
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
