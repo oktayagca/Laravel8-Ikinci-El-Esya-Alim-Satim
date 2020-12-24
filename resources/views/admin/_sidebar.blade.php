@@ -13,7 +13,10 @@
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                @auth
+                <a href="#" class="d-block"><span>{{Auth::user()->name}}</span></a>
+                <a href={{route('adminLogout')}} class="d-block"><span>Logout</span></a>
+                @endauth
             </div>
         </div>
         <!-- /menu profile quick info -->
