@@ -28,6 +28,7 @@
 
     <!-- Custom Theme Style -->
     <link href="{{asset('assets')}}/admin/build/css/custom.min.css" rel="stylesheet">
+
     @yield('css')
     @yield('javascript')
 </head>
