@@ -22,7 +22,7 @@
                 <div class="col-md-12 col-sm-12  ">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Category List</h2>
+                            <a class="btn btn-round btn-info" href="{{route('adminCategoryAdd')}}">Add Category</a>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -52,8 +52,8 @@
                                                                     <td>{{$rs->parent_id}}</td>
                                                                     <td>{{$rs->title}}</td>
                                                                     <td>{{$rs->status}}</td>
-                                                                    <td>Edit</td>
-                                                                    <td>Delete</td>
+                                                                    <td><a href="{{route('adminCategoryEdit',['id'=>$rs->id])}}">Edit</a></td>
+                                                                    <td><a href="{{route('adminCategoryDelete',['id'=>$rs->id])}}" onclick="return confirm('Delete! Are you sure')">Delete</a></td>
                                                                 </tr>
 
                                                             @endforeach
