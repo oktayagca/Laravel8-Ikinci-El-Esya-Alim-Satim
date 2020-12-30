@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Category List')
+@section('title', 'Product List')
 @section('css')
     <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link href="{{asset('assets')}}/admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Categories</h3>
+                    <h3>Product</h3>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -22,7 +22,7 @@
                 <div class="col-md-12 col-sm-12  ">
                     <div class="x_panel">
                         <div class="x_title">
-                            <a class="btn btn-round btn-info" href="{{route('adminCategoryAdd')}}">Add Category</a>
+                            <a class="btn btn-round btn-info" href="{{route('adminProductCreate')}}">Add Product</a>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -37,22 +37,30 @@
                                                             <thead>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Parent</th>
+                                                                <th>Category</th>
                                                                 <th>Title</th>
+                                                                <th>Quantity</th>
+                                                                <th>Price</th>
+                                                                <th>Location</th>
+                                                                <th>Image</th>
                                                                 <th>Status</th>
                                                                 <th style="..." colspan="2">Actions</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @foreach($categoryList as $rs)
+                                                            @foreach($dataList as $rs)
 
                                                                 <tr role="row" class="odd">
                                                                     <td class="sorting_1">{{$rs->id}}</td>
-                                                                    <td>{{$rs->parent_id}}</td>
+                                                                    <td>{{$rs->category_id}}</td>
                                                                     <td>{{$rs->title}}</td>
+                                                                    <td>{{$rs->quantity}}</td>
+                                                                    <td>{{$rs->price}}</td>
+                                                                    <td>{{$rs->location}}</td>
+                                                                    <td>{{$rs->image}}</td>
                                                                     <td>{{$rs->status}}</td>
-                                                                    <td><a href="{{route('adminCategoryEdit',['id'=>$rs->id])}}"><i class="fa fa-edit"></a></td>
-                                                                    <td><a href="{{route('adminCategoryDelete',['id'=>$rs->id])}}" onclick="return confirm('Delete! Are you sure')"><i class="fa fa-trash"></i></a></td>
+                                                                    <td><a href="{{route('adminProductEdit',['id'=>$rs->id])}}"><i class="fa fa-edit"></i></a></td>
+                                                                    <td><a href="{{route('adminProductDelete',['id'=>$rs->id])}}" onclick="return confirm('Delete! Are you sure')"><i class="fa fa-trash"></i></a></td>
                                                                 </tr>
 
                                                             @endforeach
