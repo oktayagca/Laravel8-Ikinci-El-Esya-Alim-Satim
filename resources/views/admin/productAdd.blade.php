@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('title', 'Add Product')
+@section('css')
+    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+@endsection
 
 @section('content')
     <!-- page content -->
@@ -22,7 +25,7 @@
                             <div class="col-md-12 col-sm-12 ">
                                 <br/>
                                 <form action="{{route('adminProductStore')}}" method="post" data-parsley-validate
-                                      class="form-horizontal form-label-left">
+                                      class="form-horizontal form-label-left" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Category</label>
@@ -61,13 +64,16 @@
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Quantity</label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input name="quantity" id="quantity" class="form-control" type="number" value="1">
+                                            <input name="quantity" id="quantity" class="form-control" type="number"
+                                                   value="1">
                                         </div>
                                     </div>
                                     <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Minimum Quantity</label>
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Minimum
+                                            Quantity</label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input name="minQuantity" id="minQuantity" class="form-control" type="number" value="1">
+                                            <input name="minQuantity" id="minQuantity" class="form-control"
+                                                   type="number" value="1">
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -84,9 +90,13 @@
                                     </div>
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Detail</label>
-                                        <div class="col-md-6 col-sm-6 ">
-                                            <input name="detail" id="detail" class="form-control" type="detail">
+                                        <div  class="col-md-6 col-sm-6 ">
+                                            <textarea id="editor1" class="ckeditor" name="detail" ></textarea>
                                         </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Image</label>
+                                        <input name="image" id="image" class="col-md-6 col-sm-6" type="file">
                                     </div>
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Slug</label>

@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('title', 'Edit Product')
+@section('css')
+    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+@endsection
 
 @section('content')
     <!-- page content -->
@@ -22,7 +25,7 @@
                             <div class="col-md-12 col-sm-12 ">
                                 <br/>
                                 <form action="{{route('adminProductUpdate',['id'=>$data->id])}}" method="post" data-parsley-validate
-                                      class="form-horizontal form-label-left">
+                                      class="form-horizontal form-label-left" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Category</label>
@@ -84,10 +87,22 @@
                                     </div>
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Detail</label>
-                                        <div class="col-md-6 col-sm-6 ">
-                                            <input name="detail" id="detail" class="form-control" type="detail" value="{{$data->detail}}">
+                                        <div  class="col-md-6 col-sm-6 ">
+                                            <textarea id="editor1" class="ckeditor" name="detail" >{{$data->detail}}</textarea>
                                         </div>
                                     </div>
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Image</label>
+                                        <input name="image" id="image" class="col-md-6 col-sm-6" type="file">
+                                    </div>
+                                    @if($data->image)
+                                        <div class="item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"></label>
+                                            <div class="col-md-6 col-sm-6 ">
+                                                <img src="{{Storage::url($data->image)}}" height="60" alt="">
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Slug</label>
                                         <div class="col-md-6 col-sm-6 ">

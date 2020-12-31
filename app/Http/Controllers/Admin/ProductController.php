@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -55,6 +56,9 @@ class ProductController extends Controller
         $data->tax =$request->input('tax');
         $data->location =$request->input('location');
         $data->detail =$request->input('detail');
+        if($request->file('image')) {
+            $data->image = Storage::putFile('images', $request->file('image'));
+        }
         $data->save();
 
         return redirect()->route('adminProducts');
@@ -107,6 +111,9 @@ class ProductController extends Controller
         $data->tax =$request->input('tax');
         $data->location =$request->input('location');
         $data->detail =$request->input('detail');
+        if($request->file('image')) {
+            $data->image = Storage::putFile('images', $request->file('image'));
+        }
         $data->save();
 
         return redirect()->route('adminProducts');

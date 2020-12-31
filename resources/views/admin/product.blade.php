@@ -57,7 +57,11 @@
                                                                     <td>{{$rs->quantity}}</td>
                                                                     <td>{{$rs->price}}</td>
                                                                     <td>{{$rs->location}}</td>
-                                                                    <td>{{$rs->image}}</td>
+                                                                    <td>
+                                                                        @if($rs->image)
+                                                                            <img src="{{Storage::url($rs->image)}}" height="30" alt="">
+                                                                        @endif
+                                                                    </td>
                                                                     <td>{{$rs->status}}</td>
                                                                     <td><a href="{{route('adminProductEdit',['id'=>$rs->id])}}"><i class="fa fa-edit"></i></a></td>
                                                                     <td><a href="{{route('adminProductDelete',['id'=>$rs->id])}}" onclick="return confirm('Delete! Are you sure')"><i class="fa fa-trash"></i></a></td>
