@@ -50,6 +50,16 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('delete/{id}',[App\Http\Controllers\Admin\ProductController::class,'destroy'])->name('adminProductDelete');
         Route::get('show', [App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('adminProductShow');
     });
+
+    #image
+    Route::prefix('image')->group(function (){
+        Route::get('create/{product_id}',[App\Http\Controllers\Admin\ImageController::class,'create'])->name('adminImageCreate');
+        Route::post('store/{product_id}',[App\Http\Controllers\Admin\ImageController::class,'store'])->name('adminImageStore');
+        Route::get('edit/{id}/{product_id}',[App\Http\Controllers\Admin\ImageController::class,'edit'])->name('adminImageEdit');
+        Route::post('update/{id}/{product_id}',[App\Http\Controllers\Admin\ImageController::class,'update'])->name('adminImageUpdate');
+        Route::get('delete/{id}/{product_id}',[App\Http\Controllers\Admin\ImageController::class,'destroy'])->name('adminImageDelete');
+        Route::get('show', [App\Http\Controllers\Admin\ImageController::class, 'show'])->name('adminImageShow');
+    });
 });
 
 

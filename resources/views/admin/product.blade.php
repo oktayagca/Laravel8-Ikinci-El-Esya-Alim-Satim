@@ -3,10 +3,14 @@
 @section('css')
     <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link href="{{asset('assets')}}/admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="{{asset('assets')}}/admin/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="{{asset('assets')}}/admin/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="{{asset('assets')}}/admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="{{asset('assets')}}/admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('assets')}}/admin/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+          rel="stylesheet">
+    <link href="{{asset('assets')}}/admin/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+          rel="stylesheet">
+    <link href="{{asset('assets')}}/admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+          rel="stylesheet">
+    <link href="{{asset('assets')}}/admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+          rel="stylesheet">
 @endsection
 @section('content')
     <!-- page content -->
@@ -33,7 +37,8 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="card-box table-responsive">
-                                                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                                        <table id="datatable" class="table table-striped table-bordered"
+                                                               style="width:100%">
                                                             <thead>
                                                             <tr>
                                                                 <th>Id</th>
@@ -43,6 +48,7 @@
                                                                 <th>Price</th>
                                                                 <th>Location</th>
                                                                 <th>Image</th>
+                                                                <th>Image Gallery</th>
                                                                 <th>Status</th>
                                                                 <th style="..." colspan="2">Actions</th>
                                                             </tr>
@@ -59,12 +65,24 @@
                                                                     <td>{{$rs->location}}</td>
                                                                     <td>
                                                                         @if($rs->image)
-                                                                            <img src="{{Storage::url($rs->image)}}" height="30" alt="">
+                                                                            <img src="{{Storage::url($rs->image)}}"
+                                                                                 height="30" alt="">
                                                                         @endif
                                                                     </td>
+                                                                    <td>
+                                                                        <a href="{{route('adminImageCreate',['product_id'=>$rs->id])}}">
+                                                                            <img
+                                                                                src="{{asset('assets/admin/images')}}/gallery.png"
+                                                                                height="30"> </a>
+                                                                    </td>
                                                                     <td>{{$rs->status}}</td>
-                                                                    <td><a href="{{route('adminProductEdit',['id'=>$rs->id])}}"><i class="fa fa-edit"></i></a></td>
-                                                                    <td><a href="{{route('adminProductDelete',['id'=>$rs->id])}}" onclick="return confirm('Delete! Are you sure')"><i class="fa fa-trash"></i></a></td>
+                                                                    <td>
+                                                                        <a href="{{route('adminProductEdit',['id'=>$rs->id])}}"><i
+                                                                                class="fa fa-edit"></i></a></td>
+                                                                    <td>
+                                                                        <a href="{{route('adminProductDelete',['id'=>$rs->id])}}"
+                                                                           onclick="return confirm('Delete! Are you sure')"><i
+                                                                                class="fa fa-trash"></i></a></td>
                                                                 </tr>
 
                                                             @endforeach
@@ -76,13 +94,13 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /page content -->
+        <!-- /page content -->
     </div>
     </div>
 @endsection
@@ -96,7 +114,8 @@
     <script src="{{asset('assets')}}/admin/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
     <script src="{{asset('assets')}}/admin/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
     <script src="{{asset('assets')}}/admin/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="{{asset('assets')}}/admin/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script
+        src="{{asset('assets')}}/admin/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
     <script src="{{asset('assets')}}/admin/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
     <script src="{{asset('assets')}}/admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="{{asset('assets')}}/admin/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
