@@ -30,7 +30,7 @@
                 <ul class="nav side-menu">
                     <li><a href="{{route('adminCategory')}}"><i class="fa fa-edit"></i> Category </a></li>
                     <li><a href="{{route('adminProducts')}}"><i class="fa fa-desktop"></i> Products </a></li>
-                    <li><a><i class="fa fa-table"></i> Tables</a></li>
+                    <li><a href="{{route('adminSetting')}}"><i class="fa fa-table"></i> Settings</a></li>
                     <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation</a></li>
                     <li><a><i class="fa fa-clone"></i>Layouts </a>
                     </li>
