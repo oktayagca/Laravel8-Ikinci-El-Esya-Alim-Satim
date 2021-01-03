@@ -58,7 +58,7 @@
 
                                                                 <tr role="row" class="odd">
                                                                     <td class="sorting_1">{{$rs->id}}</td>
-                                                                    <td>{{$rs->category_id}}</td>
+                                                                    <td>{{$rs->category->title}}</td>
                                                                     <td>{{$rs->title}}</td>
                                                                     <td>{{$rs->quantity}}</td>
                                                                     <td>{{$rs->price}}</td>
@@ -66,14 +66,14 @@
                                                                     <td>
                                                                         @if($rs->image)
                                                                             <img src="{{Storage::url($rs->image)}}"
-                                                                                 height="30" alt="">
+                                                                                 height="30" alt="" >
                                                                         @endif
                                                                     </td>
                                                                     <td>
                                                                         <a href="{{route('adminImageCreate',['product_id'=>$rs->id])}}">
                                                                             <img
                                                                                 src="{{asset('assets/admin/images')}}/gallery.png"
-                                                                                height="30"> </a>
+                                                                                height="30" > </a>
                                                                     </td>
                                                                     <td>{{$rs->status}}</td>
                                                                     <td>
