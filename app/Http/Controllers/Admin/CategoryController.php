@@ -9,6 +9,21 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    protected $appends = [
+        'getParentsTree'
+    ];
+
+    public static function getParentsTree($category, $title)
+    {
+        if ($category->parent_id == 0) {
+            return $title;
+        }
+        $parent = Category::find($category->parent_id);
+        $title = $parent->title . '>' . $title;
+        return CategoryController::getParentsTree($parent, $title);
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +31,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categoryList = DB::select('select * from categories');
-        return  view('admin.category',['categoryList'=>$categoryList]);
+        $categoryList = Category::with('children')->get();
+        return view('admin.category', ['categoryList' => $categoryList]);
     }
 
     /**
@@ -27,27 +42,27 @@ class CategoryController extends Controller
      */
     public function add()
     {
-        $categoryList = DB::table('categories')->get()->where('parent_id',0);
-        return  view('admin.categoryAdd',['categoryList'=>$categoryList]);
+        $categoryList = Category::with('children')->get();
+        return view('admin.categoryAdd', ['categoryList' => $categoryList]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
 
         DB::table('categories')->insert([
-            'parent_id'=>$request->input('parent_id'),
-            'title'=>$request->input('title'),
-            'keywords'=>$request->input('keywords'),
-            'description'=>$request->input('description'),
-            'slug'=>$request->input('slug'),
-            'status'=>$request->input('status')
+            'parent_id' => $request->input('parent_id'),
+            'title' => $request->input('title'),
+            'keywords' => $request->input('keywords'),
+            'description' => $request->input('description'),
+            'slug' => $request->input('slug'),
+            'status' => $request->input('status')
         ]);
         return redirect()->route('adminCategory');
 
@@ -56,7 +71,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -67,7 +82,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -78,46 +93,46 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $categoryList = DB::table('categories')->get()->where('parent_id',0);
+        $categoryList = Category::with('children')->get();
         $data = Category::find($id);
-        return view('admin.categoryEdit',['data'=>$data,'categoryList'=>$categoryList]);
+        return view('admin.categoryEdit', ['data' => $data, 'categoryList' => $categoryList]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $data = Category::find($id);
         $data->parent_id = $request->input('parent_id');
-        $data->title =$request->input('title');
-        $data->keywords =$request->input('keywords');
-        $data->description =$request->input('description');
-        $data->slug =$request->input('slug');
-        $data->status =$request->input('status');
+        $data->title = $request->input('title');
+        $data->keywords = $request->input('keywords');
+        $data->description = $request->input('description');
+        $data->slug = $request->input('slug');
+        $data->status = $request->input('status');
         $data->save();
 
-        return  redirect()->route('adminCategory');
+        return redirect()->route('adminCategory');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        DB::table('categories')->where('id','=',$id)->delete();
+        DB::table('categories')->where('id', '=', $id)->delete();
         return redirect()->route('adminCategory');
     }
 }

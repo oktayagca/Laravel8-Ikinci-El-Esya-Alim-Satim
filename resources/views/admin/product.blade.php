@@ -58,7 +58,9 @@
 
                                                                 <tr role="row" class="odd">
                                                                     <td class="sorting_1">{{$rs->id}}</td>
-                                                                    <td>{{$rs->category->title}}</td>
+                                                                    <td>
+                                                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs->category,$rs->category->title)}}
+                                                                    </td>
                                                                     <td>{{$rs->title}}</td>
                                                                     <td>{{$rs->quantity}}</td>
                                                                     <td>{{$rs->price}}</td>

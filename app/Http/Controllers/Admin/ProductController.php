@@ -30,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $dataList = Category::all();
+        $dataList = Category::with('children')->get();
         return  view('admin.productAdd',['dataList'=>$dataList]);
     }
 
@@ -83,7 +83,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product,$id)
     {
-        $dataList = Category::all();
+        $dataList = Category::with('children')->get();
         $data = Product::find($id);
         return view('admin.productEdit',['data'=>$data,'dataList'=>$dataList]);
     }

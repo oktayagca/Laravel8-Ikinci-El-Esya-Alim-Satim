@@ -48,10 +48,12 @@
 
                                                                 <tr role="row" class="odd">
                                                                     <td class="sorting_1">{{$rs->id}}</td>
-                                                                    <td>{{$rs->parent_id}}</td>
+                                                                    <td>
+                                                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title)}}
+                                                                    </td>
                                                                     <td>{{$rs->title}}</td>
                                                                     <td>{{$rs->status}}</td>
-                                                                    <td><a href="{{route('adminCategoryEdit',['id'=>$rs->id])}}"><i class="fa fa-edit"></a></td>
+                                                                    <td><a href="{{route('adminCategoryEdit',['id'=>$rs->id])}}"><i class="fa fa-edit"></i></a></td>
                                                                     <td><a href="{{route('adminCategoryDelete',['id'=>$rs->id])}}" onclick="return confirm('Delete! Are you sure')"><i class="fa fa-trash"></i></a></td>
                                                                 </tr>
 
