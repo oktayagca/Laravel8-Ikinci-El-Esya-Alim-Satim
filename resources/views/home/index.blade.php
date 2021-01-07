@@ -1,9 +1,7 @@
 @extends('layouts.home')
-@section('title', 'Laravel İkinci El Eşya')
-@section('description')
-    İkinci el eşya alım satım sitesi
-@endsection
-@section('keywords', 'Bilgisayar,telefon,tablet,koltuk,tv')
+@section('title',$setting->title)
+@section('description'){{$setting->description}}@endsection
+@section('keywords', $setting->keywords)
 @section('slider')
     @parent
 @endsection

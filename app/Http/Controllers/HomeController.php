@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Models\Category;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,9 +13,28 @@ class HomeController extends Controller
     public static function categorylist(){
         return Category::where('parent_id','=',0)->with('children')->get();
     }
+    public static function getSetting(){
+        return Setting::first();
+    }
 
     public function  index(){
-        return view('home.index');
+        $setting = Setting::first();
+        return view('home.index',['setting'=>$setting]);
+    }
+    public function  references(){
+        $setting = Setting::first();
+        return view('home.index',['setting'=>$setting]);
+    }
+    public function  faq(){
+        $setting = Setting::first();
+        return view('home.index',['setting'=>$setting]);
+    }
+    public function  contact(){
+        $setting = Setting::first();
+        return view('home.index',['setting'=>$setting]);
+    }
+    public function  aboutUs(){
+        return view('home.about');
     }
 
     public function login(){
@@ -42,7 +62,7 @@ class HomeController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/admin/login');
+        return redirect('/');
     }
     public function test($id){
         echo "Id number:",$id;

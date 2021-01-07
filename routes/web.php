@@ -14,19 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home.index', ['name' => 'oktay ağca']);
-});//eğer bir dosya çağıracaksak bu yapıyı kullanabiliriz
-
-Route::redirect('/anasayfa', 'home');
-
-Route::get('/home2', [HomeController::class, 'index']);
-
-Route::get('/test/{id}', [HomeController::class, 'test']);
+//Route::get('/home', function () {
+   // return view('home.index', ['name' => 'oktay ağca']);
+//});//eğer bir dosya çağıracaksak bu yapıyı kullanabiliriz
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('homePage');
+Route::get('/aboutUs', [HomeController::class, 'aboutUs'])->name('aboutUs');
+Route::get('/references', [HomeController::class, 'references'])->name('references');
+Route::get('/fag', [HomeController::class, 'fag'])->name('faq');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 //admin panel route
 Route::middleware('auth')->prefix('admin')->group(function () {
@@ -71,7 +71,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 Route::get('/admin/login', [HomeController::class, 'login'])->name('adminLogin');
 Route::post('admin/loginCheck', [HomeController::class, 'loginCheck'])->name('adminLoginCheck');
-Route::get('/admin/logout', [HomeController::class, 'logout'])->name('adminLogout');
+Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 
 ///////////
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
