@@ -1,5 +1,5 @@
 @php
-    $settiing=\App\Http\Controllers\HomeController::getSetting()
+    $setting=\App\Http\Controllers\HomeController::getSetting()
 @endphp
 
 <footer id="footer"><!--Footer-->

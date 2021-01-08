@@ -3,10 +3,13 @@
 @section('description'){{$setting->description}}@endsection
 @section('keywords', $setting->keywords)
 @section('slider')
-    @parent
+    @include('home._slider')
 @endsection
-@section('contentAndCategory')
-    @parent
+@section('menu')
+    @include('home._category')
+@endsection
+@section('priceRange')
+    @include('home._priceRange')
 @endsection
 @section('content')
     <div class="col-sm-9 padding-right">

@@ -1,5 +1,5 @@
 @php
-    $settiing=\App\Http\Controllers\HomeController::getSetting()
+    $setting=\App\Http\Controllers\HomeController::getSetting()
 @endphp
 
 <header id="header"><!--header-->
@@ -55,7 +55,7 @@
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             @auth
-                                    <li><a href=""><i class="fa fa-user"></i> {{Auth::user()->name}}</a></li>
+                                    <li><a href="{{route('myProfile')}}"><i class="fa fa-user"></i> {{Auth::user()->name}}</a></li>
                                 <li><a href="{{route('logout')}}"><i class="fa fa-unlock"></i> Logout</a></li>
                             @endauth
                             @guest()

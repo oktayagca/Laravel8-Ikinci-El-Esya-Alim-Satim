@@ -29,22 +29,17 @@
 </head><!--/head-->
 <body>
 @include('home._header')
-@section('slider')
-    @include('home._slider')
-@show
+@yield('slider')
 <section>
     <div class="container">
         <div class="row">
-            @section('contentAndCategory')
                 <div class="col-sm-3"><!--/category,brands,priceRange-->
                     <div class="left-sidebar">
-                        @include('home._category')
-                        @include('home._brands')
-                        @include('home._priceRange')
+                        @yield('menu')
+                        @yield('priceRange')
                     </div>
                 </div><!--/category,brands,priceRange-->
                 @yield('content')
-            @show
         </div>
     </div>
 </section>
