@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Models\Category;
+use App\Models\Message;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use MongoDB\Driver\Session;
 
 class HomeController extends Controller
 {
@@ -32,6 +35,19 @@ class HomeController extends Controller
     public function  contact(){
         $setting = Setting::first();
         return view('home.contact',['setting'=>$setting]);
+    }
+    public function  sendMessage(Request $request){
+        $data = new Message();
+
+        $data->name =$request->input('name');
+        $data->email =$request->input('email');
+        $data->phone =$request->input('phone');
+        $data->subject =$request->input('subject');
+        $data->message =$request->input('message');
+        $data->ip=$request->getClientIp();
+        $data->save();
+
+        return redirect()->route('contact')->with('success','Mesajınız Kaydedilmiştir,Teşekkür Ederiz');
     }
     public function  aboutUs(){
         $setting = Setting::first();

@@ -8,9 +8,15 @@
 
         <!-- menu profile quick info -->
         <div class="profile clearfix">
+            @if(Auth::user()->profile_photo_path)
             <div class="profile_pic">
-                <img src="{{asset('assets')}}/admin/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="{{Storage::url(Auth::user()->profile_photo_path)}}" alt="..." class="img-circle profile_img">
             </div>
+            @else
+                <div class="profile_pic">
+                    <img src="{{asset('assets')}}/admin/images/img.jpg" alt="..." class="img-circle profile_img">
+                </div>
+            @endif
             <div class="profile_info">
                 <span>Welcome,</span>
                 @auth
@@ -31,7 +37,7 @@
                     <li><a href="{{route('adminCategory')}}"><i class="fa fa-edit"></i> Category </a></li>
                     <li><a href="{{route('adminProducts')}}"><i class="fa fa-desktop"></i> Products </a></li>
                     <li><a href="{{route('adminSetting')}}"><i class="fa fa-table"></i> Settings</a></li>
-                    <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation</a></li>
+                    <li><a href="{{route('adminMessage')}}"><i class="fa fa-bar-chart-o"></i>Contact Messages</a></li>
                     <li><a><i class="fa fa-clone"></i>Layouts </a>
                     </li>
                 </ul>

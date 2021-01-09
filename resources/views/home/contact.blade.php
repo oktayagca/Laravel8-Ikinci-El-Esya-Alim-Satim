@@ -22,13 +22,18 @@
                 <div class="col-sm-6">
                     <div class="contact-form">
                         <h2 class="title text-center">Get In Touch</h2>
+                        @include('home.message')
                         <div class="status alert alert-success" style="display: none"></div>
-                        <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                        <form id="main-contact-form" class="contact-form row" name="contact-form" action="{{route('sendMessage')}}" method="post">
+                            @csrf
                             <div class="form-group col-md-6">
-                                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                                <input type="text" name="name" class="form-control" required="required" placeholder="Name & Surname">
                             </div>
                             <div class="form-group col-md-6">
                                 <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" name="phone" class="form-control" required="required" placeholder="Phone">
                             </div>
                             <div class="form-group col-md-12">
                                 <input type="text" name="subject" class="form-control" required="required" placeholder="Subject">
