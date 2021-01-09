@@ -33,12 +33,14 @@
 <section>
     <div class="container">
         <div class="row">
+            @section('menu')
                 <div class="col-sm-3"><!--/category,brands,priceRange-->
                     <div class="left-sidebar">
-                        @yield('menu')
+                        @yield('categories')
                         @yield('priceRange')
                     </div>
                 </div><!--/category,brands,priceRange-->
+            @show
                 @yield('content')
         </div>
     </div>

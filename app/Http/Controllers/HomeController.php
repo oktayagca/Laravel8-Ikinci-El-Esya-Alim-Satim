@@ -23,7 +23,7 @@ class HomeController extends Controller
     }
     public function  references(){
         $setting = Setting::first();
-        return view('home.index',['setting'=>$setting]);
+        return view('home.references',['setting'=>$setting]);
     }
     public function  faq(){
         $setting = Setting::first();
@@ -31,10 +31,11 @@ class HomeController extends Controller
     }
     public function  contact(){
         $setting = Setting::first();
-        return view('home.index',['setting'=>$setting]);
+        return view('home.contact',['setting'=>$setting]);
     }
     public function  aboutUs(){
-        return view('home.about');
+        $setting = Setting::first();
+        return view('home.aboutUs',['setting'=>$setting]);
     }
 
     public function login(){

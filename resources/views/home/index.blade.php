@@ -5,7 +5,7 @@
 @section('slider')
     @include('home._slider')
 @endsection
-@section('menu')
+@section('categories')
     @include('home._category')
 @endsection
 @section('priceRange')
