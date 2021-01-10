@@ -29,6 +29,7 @@ Route::get('/references', [HomeController::class, 'references'])->name('referenc
 Route::get('/fag', [HomeController::class, 'fag'])->name('faq');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/send-message', [HomeController::class, 'sendMessage'])->name('sendMessage');
+Route::get('/product/{id}/{slug}', [HomeController::class, 'product'])->name('product');
 
 //admin panel route
 Route::middleware('auth')->prefix('admin')->group(function () {
