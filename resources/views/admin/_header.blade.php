@@ -7,9 +7,16 @@
         <nav class="nav navbar-nav">
             <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
-                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                        <img src="{{asset('assets')}}/admin/images/img.jpg" alt="">{{Auth::user()->name}}
-                    </a>
+                        @if(Auth::user()->profile_photo_path)
+                        <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                            <img src="{{Storage::url(Auth::user()->profile_photo_path)}}" alt="">{{Auth::user()->name}}
+                        </a>
+                        @else
+                        <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                            <img src="{{asset('assets')}}/admin/images/img.jpg" alt="">{{Auth::user()->name}}
+                        </a>
+                        @endif
+
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item"  href="javascript:;"> Profile</a>
                         <a class="dropdown-item"  href="javascript:;">
