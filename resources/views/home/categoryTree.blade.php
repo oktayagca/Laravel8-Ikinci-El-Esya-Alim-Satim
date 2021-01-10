@@ -20,7 +20,7 @@
 
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a  href="www.google.com">
+                            <a  href="{{route('categoryProducts',['id'=>$subcategory->id,'slug'=>$subcategory->title])}}">
                                 {{$subcategory->title}}
                             </a>
                         </h4>

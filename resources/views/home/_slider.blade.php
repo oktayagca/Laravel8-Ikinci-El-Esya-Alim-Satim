@@ -18,7 +18,7 @@
                                 <div class="col-sm-6">
                                     <h1><span>E</span>-SHOPPER</h1>
                                     <h2>{{$rs->title}}</h2>
-                                    <p>{{$rs->price}} TL </p>
+                                    <p>{{$rs->price}} $ </p>
                                     <button href="{{route('product',['id'=>$rs->id,'slug'=>$rs->slug])}}"
                                             type="button" class="btn btn-default get">Get it now
                                     </button>

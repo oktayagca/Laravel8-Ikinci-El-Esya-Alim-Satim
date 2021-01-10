@@ -42,7 +42,8 @@ class HomeController extends Controller
         $setting = Setting::first();
         return view('home.contact',['setting'=>$setting]);
     }
-    public function  sendMessage(Request $request){
+    public function  sendMessage(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $data = new Message();
 
         $data->name =$request->input('name');
@@ -57,6 +58,11 @@ class HomeController extends Controller
     }
     public function  product($id,$slug){
         $data = Product::find($id);
+    }
+    public function  categoryProducts($id,$slug){
+        $dataList = Product::where('category_id',$id)->get();
+        $data = Category::find($id);
+        return view('home.categoryProducts',['dataList'=>$dataList,'data'=>$data]);
     }
     public function  aboutUs(){
         $setting = Setting::first();
