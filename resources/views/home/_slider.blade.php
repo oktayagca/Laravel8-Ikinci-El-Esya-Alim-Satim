@@ -19,9 +19,9 @@
                                     <h1><span>E</span>-SHOPPER</h1>
                                     <h2>{{$rs->title}}</h2>
                                     <p>{{$rs->price}} $ </p>
-                                    <button href="{{route('product',['id'=>$rs->id,'slug'=>$rs->slug])}}"
+                                    <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}"
                                             type="button" class="btn btn-default get">Get it now
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="col-sm-6">
                                     <img style="height: 441px" src="{{Storage::url($rs->image)}}"

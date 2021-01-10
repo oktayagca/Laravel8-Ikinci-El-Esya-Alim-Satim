@@ -27,7 +27,7 @@
                             <div class="overlay-content">
                                 <h2>{{$rs->price}}</h2>
                                 <p>{{$rs->title}}</p>
-                                <a href="#" class="btn btn-default add-to-cart">Quick View</a>
+                                <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}" class="btn btn-default add-to-cart">Quick View</a>
                             </div>
                         </div>
                     </div>

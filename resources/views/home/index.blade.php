@@ -32,7 +32,7 @@
                                 <div class="overlay-content">
                                     <h2>{{$rs->price}}</h2>
                                     <p>{{$rs->title}}</p>
-                                    <a href="#" class="btn btn-default add-to-cart">Quick View</a>
+                                    <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}" class="btn btn-default add-to-cart">Quick View</a>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                     <div class="overlay-content">
                                         <h2>{{$rs->price}}</h2>
                                         <p>{{$rs->title}}</p>
-                                        <a href="#" class="btn btn-default add-to-cart">Quick View</a>
+                                        <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}" class="btn btn-default add-to-cart">Quick View</a>
                                     </div>
                                 </div>
                             </div>
@@ -95,9 +95,9 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <img style="width: 268px" src="{{Storage::url($rs->image)}}" alt=""/>
+                                           <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}"> <img style="width: 268px" src="{{Storage::url($rs->image)}}" alt=""/>
                                             <h2>{{$rs->price}}</h2>
-                                            <p>{{substr($rs->title,0,101)}}</p>
+                                            <p>{{substr($rs->title,0,101)}}</p></a>
                                             <a href="#" class="btn btn-default add-to-cart"><i
                                                     class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
@@ -113,9 +113,9 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <img style="width: 268px" src="{{Storage::url($rs->image)}}" alt=""/>
-                                            <h2>{{$rs->price}}</h2>
-                                            <p>{{substr($rs->title,0,101)}}</p>
+                                            <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}"> <img style="width: 268px" src="{{Storage::url($rs->image)}}" alt=""/>
+                                                <h2>{{$rs->price}}</h2>
+                                                <p>{{substr($rs->title,0,101)}}</p></a>
                                             <a href="#" class="btn btn-default add-to-cart"><i
                                                     class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>

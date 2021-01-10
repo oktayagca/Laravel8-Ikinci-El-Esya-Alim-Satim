@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Message;
 use App\Models\Product;
 use App\Models\Setting;
@@ -76,9 +77,12 @@ class HomeController extends Controller
         return redirect()->route('contact')->with('success', 'Mesajınız Kaydedilmiştir,Teşekkür Ederiz');
     }
 
-    public function product($id, $slug)
+    public function product($id, $title)
     {
         $data = Product::find($id);
+        $dataList = Image::where('product_id', $id)->get();
+        $picked = Product::select('id', 'title', 'image', 'price', 'slug')->limit(3)->inRandomOrder()->get();
+        return view('home.productDetail',['data'=>$data,'dataList'=>$dataList,'picked'=>$picked]);
     }
 
     public function categoryProducts($id, $slug)
