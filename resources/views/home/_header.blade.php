@@ -55,11 +55,12 @@
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             @auth
-                                    <li><a href="{{route('myProfile')}}"><i class="fa fa-user"></i> {{Auth::user()->name}}</a></li>
+                                <li><a href="{{route('myProfile')}}"><i class="fa fa-user"></i> {{Auth::user()->name}}
+                                    </a></li>
                                 <li><a href="{{route('logout')}}"><i class="fa fa-unlock"></i> Logout</a></li>
                             @endauth
                             @guest()
-                                    <li><a href=""><i class="fa fa-user"></i> Account</a></li>
+                                <li><a href=""><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="/login"><i
                                             class="fa fa-lock"></i> Login</a></li>
                                 <li><a href="/register"><i
@@ -98,8 +99,19 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                    <div class="">
+                        <div class="form-group col-md-12">
+                        <form action="{{route('getProduct')}}" method="post">
+                            @csrf
+                            <div class="form-group col-md-8">
+                            @livewire('search')
+                            </div>
+                            <div class="form-group col-md-4">
+                            <button type="submit" class=" "><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                        </div>
+                        @livewireScripts
                     </div>
                 </div>
             </div>

@@ -2,6 +2,9 @@
 @section('title','User Profile')
 
 @section('menu')
+    @parent
+@endsection
+@section('categories')
     @include('home._userMenu')
 @endsection
 @section('content')

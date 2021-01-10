@@ -97,6 +97,23 @@ class HomeController extends Controller
         $setting = Setting::first();
         return view('home.aboutUs', ['setting' => $setting]);
     }
+    public function getProduct(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $search = $request->input('search');
+        $count =Product::where('title','like','%'.$search.'%')->get()->count();
+        if($count==1){
+            $data = Product::where('title','like','%'.$search.'%')->first();
+            return redirect()->route('product',['id'=>$data->id,'title'=>$data->title]);
+        }else{
+            return redirect()->route('productList',['search'=>$search]);
+        }
+
+    }
+    public function productList($search)
+    {
+        $dataList = Product::where('title','like','%'.$search.'%')->get();
+        return view('home.searchProducts', ['search' => $search,'dataList'=>$dataList]);
+    }
     public function addToCart()
     {
     }

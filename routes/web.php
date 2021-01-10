@@ -32,6 +32,8 @@ Route::post('/send-message', [HomeController::class, 'sendMessage'])->name('send
 Route::get('/product/{id}/{title}', [HomeController::class, 'product'])->name('product');
 Route::get('/categoryproducts/{id}/{slug}', [HomeController::class, 'categoryProducts'])->name('categoryProducts');
 Route::get('/addtocart/{id}', [HomeController::class, 'addToCart'])->name('addToCart');
+Route::post('/getProduct', [HomeController::class, 'getProduct'])->name('getProduct');
+Route::get('/productlist/{search}', [HomeController::class, 'productList'])->name('productList');
 //admin panel route
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('adminHome');
