@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Message;
 use App\Models\Product;
@@ -23,6 +24,14 @@ class HomeController extends Controller
     public static function getSetting()
     {
         return Setting::first();
+    }
+    public static function countreview($id)
+    {
+        return Comment::where('product_id',$id)->count();
+    }
+    public static function avrgreview($id)
+    {
+        return Comment::where('product_id',$id)->average('rate');
     }
 
     public function index()
@@ -71,7 +80,7 @@ class HomeController extends Controller
         $data->phone = $request->input('phone');
         $data->subject = $request->input('subject');
         $data->message = $request->input('message');
-        $data->ip = $request->getClientIp();
+        $data->ip = $_SERVER['REMOTE_ADDR'];
         $data->save();
 
         return redirect()->route('contact')->with('success', 'Mesajınız Kaydedilmiştir,Teşekkür Ederiz');
@@ -80,9 +89,11 @@ class HomeController extends Controller
     public function product($id, $title)
     {
         $data = Product::find($id);
+        $search = "True";
         $dataList = Image::where('product_id', $id)->get();
         $picked = Product::select('id', 'title', 'image', 'price', 'slug')->limit(3)->inRandomOrder()->get();
-        return view('home.productDetail',['data'=>$data,'dataList'=>$dataList,'picked'=>$picked]);
+        $reviews = Comment::where('product_id',$id)->get();
+        return view('home.productDetail',['data'=>$data,'dataList'=>$dataList,'picked'=>$picked,'reviews'=>$reviews]);
     }
 
     public function categoryProducts($id, $slug)

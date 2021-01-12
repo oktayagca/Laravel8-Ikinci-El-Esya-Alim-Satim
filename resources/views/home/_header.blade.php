@@ -60,7 +60,7 @@
                                 <li><a href="{{route('logout')}}"><i class="fa fa-unlock"></i> Logout</a></li>
                             @endauth
                             @guest()
-                                <li><a href=""><i class="fa fa-user"></i> Account</a></li>
+                                <li><a href="/login"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="/login"><i
                                             class="fa fa-lock"></i> Login</a></li>
                                 <li><a href="/register"><i
@@ -101,17 +101,19 @@
                 <div class="col-sm-3">
                     <div class="">
                         <div class="form-group col-md-12">
-                        <form action="{{route('getProduct')}}" method="post">
-                            @csrf
-                            <div class="form-group col-md-8">
-                            @livewire('search')
-                            </div>
-                            <div class="form-group col-md-4">
-                            <button type="submit" class=" "><i class="fa fa-search"></i></button>
-                            </div>
-                        </form>
+                            <form action="{{route('getProduct')}}" method="post">
+                                @csrf
+                                <div class="form-group col-md-8">
+                                    @livewire('search')
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <button type="submit" class=" "><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
                         </div>
-                        @livewireScripts
+
+                            @livewireScripts
+
                     </div>
                 </div>
             </div>

@@ -22,7 +22,24 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img style="height: 249px" src="{{Storage::url($rs->image)}}" alt=""/>
-                                <h2>{{$rs->price}}</h2>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <h2>{{$rs->price}}</h2>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @php
+                                            $avgrev = \App\Http\Controllers\HomeController::avrgreview($rs->id);
+                                            $countreview = \App\Http\Controllers\HomeController::countreview($rs->id);
+                                        @endphp
+                                        <br>
+                                        <span class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
+                                        <span class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
+                                        <span class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
+                                        <span class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
+                                        <span class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
+                                        <i>({{$countreview}})</i>
+                                    </div>
+                                </div>
                                 <p>{{substr($rs->title,0,101)}}</p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
                                     to
@@ -30,9 +47,14 @@
                             </div>
                             <div class="product-overlay">
                                 <div class="overlay-content">
-                                    <h2>{{$rs->price}}</h2>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-6">
+                                            <h2>{{$rs->price}}</h2>
+                                        </div>
+                                    </div>
                                     <p>{{$rs->title}}</p>
-                                    <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}" class="btn btn-default add-to-cart">Quick View</a>
+                                    <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}"
+                                       class="btn btn-default add-to-cart">Quick View</a>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +80,24 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img style="height: 249px" src="{{Storage::url($rs->image)}}" alt=""/>
-                                    <h2>{{$rs->price}}</h2>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-6">
+                                            <h2>{{$rs->price}}</h2>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            @php
+                                                $avgrev = \App\Http\Controllers\HomeController::avrgreview($rs->id);
+                                                $countreview = \App\Http\Controllers\HomeController::countreview($rs->id);
+                                            @endphp
+                                            <br>
+                                            <span class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
+                                            <span class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
+                                            <span class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
+                                            <span class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
+                                            <span class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
+                                            <i>({{$countreview}})</i>
+                                        </div>
+                                    </div>
                                     <p>{{substr($rs->title,0,101)}}</p>
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
                                         to
@@ -68,7 +107,8 @@
                                     <div class="overlay-content">
                                         <h2>{{$rs->price}}</h2>
                                         <p>{{$rs->title}}</p>
-                                        <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}" class="btn btn-default add-to-cart">Quick View</a>
+                                        <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}"
+                                           class="btn btn-default add-to-cart">Quick View</a>
                                     </div>
                                 </div>
                             </div>
@@ -95,9 +135,27 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                           <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}"> <img style="width: 268px" src="{{Storage::url($rs->image)}}" alt=""/>
-                                            <h2>{{$rs->price}}</h2>
-                                            <p>{{substr($rs->title,0,101)}}</p></a>
+                                            <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}"> <img
+                                                    style="width: 268px" src="{{Storage::url($rs->image)}}" alt=""/>
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-6">
+                                                        <h2>{{$rs->price}}</h2>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        @php
+                                                            $avgrev = \App\Http\Controllers\HomeController::avrgreview($rs->id);
+                                                            $countreview = \App\Http\Controllers\HomeController::countreview($rs->id);
+                                                        @endphp
+                                                        <br>
+                                                        <span class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
+                                                        <span class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
+                                                        <span class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
+                                                        <span class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
+                                                        <span class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
+                                                        <i>({{$countreview}})</i>
+                                                    </div>
+                                                </div>
+                                                <p>{{substr($rs->title,0,101)}}</p></a>
                                             <a href="#" class="btn btn-default add-to-cart"><i
                                                     class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
@@ -113,8 +171,26 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}"> <img style="width: 268px" src="{{Storage::url($rs->image)}}" alt=""/>
-                                                <h2>{{$rs->price}}</h2>
+                                            <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}"> <img
+                                                    style="width: 268px" src="{{Storage::url($rs->image)}}" alt=""/>
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-6">
+                                                        <h2>{{$rs->price}}</h2>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        @php
+                                                            $avgrev = \App\Http\Controllers\HomeController::avrgreview($rs->id);
+                                                            $countreview = \App\Http\Controllers\HomeController::countreview($rs->id);
+                                                        @endphp
+                                                        <br>
+                                                        <span class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
+                                                        <span class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
+                                                        <span class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
+                                                        <span class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
+                                                        <span class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
+                                                        <i>({{$countreview}})</i>
+                                                    </div>
+                                                </div>
                                                 <p>{{substr($rs->title,0,101)}}</p></a>
                                             <a href="#" class="btn btn-default add-to-cart"><i
                                                     class="fa fa-shopping-cart"></i>Add to cart</a>

@@ -26,6 +26,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72"
           href="{{asset('assets')}}/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="{{asset('assets')}}/images/ico/apple-touch-icon-57-precomposed.png">
+    @yield('css')
+    @yield('javascript')
 </head><!--/head-->
 <body>
 @include('home._header')

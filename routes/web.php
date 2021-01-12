@@ -75,6 +75,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('show', [App\Http\Controllers\Admin\ImageController::class, 'show'])->name('adminImageShow');
     });
 
+    #comment
+    Route::prefix('comment')->group(function (){
+        Route::get('/',[App\Http\Controllers\Admin\CommentController::class,'index'])->name('adminComment');
+        Route::post('update/{id}',[App\Http\Controllers\Admin\CommentController::class,'update'])->name('adminCommentUpdate');
+        Route::get('delete/{id}',[App\Http\Controllers\Admin\CommentController::class,'destroy'])->name('adminCommentDelete');
+        Route::get('show/{id}', [App\Http\Controllers\Admin\CommentController::class, 'show'])->name('adminCommentShow');
+    });
+
     #Settings
     Route::get('setting',[App\Http\Controllers\Admin\SettingController::class,'index'])->name('adminSetting');
     Route::post('setting/update',[App\Http\Controllers\Admin\SettingController::class,'update'])->name('adminSettingUpdate');
@@ -82,6 +90,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 Route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(function (){
     Route::get('/',[UserController::class,'index'])->name('myProfile');
+    Route::get('/my-comments',[UserController::class,'myComments'])->name('myComments');
+    Route::get('/destroymyreview/{id}',[UserController::class,'destroyMyComments'])->name('destroyMyComments');
 });
 Route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
     Route::get('/profile',[UserController::class,'index'])->name('userprofile');
