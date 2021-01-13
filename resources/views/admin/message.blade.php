@@ -47,6 +47,7 @@
                                                                 <th>Phone</th>
                                                                 <th>Subject</th>
                                                                 <th>Message</th>
+                                                                <th>Status</th>
                                                                 <th>Admin Note</th>
                                                                 <th>User Ip</th>
                                                                 <th style="..." colspan="2">Actions</th>
@@ -62,6 +63,7 @@
                                                                     <td>{{$rs->phone}}</td>
                                                                     <td>{{$rs->subject}}</td>
                                                                     <td>{{$rs->message}}</td>
+                                                                    <td>{{$rs->status}}</td>
                                                                     <td>{{$rs->note}}</td>
                                                                     <td>{{$rs->ip}}</td>
                                                                     <td>

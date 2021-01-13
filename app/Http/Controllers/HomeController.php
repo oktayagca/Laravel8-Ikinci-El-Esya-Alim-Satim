@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Faq;
 use App\Models\Image;
 use App\Models\Message;
 use App\Models\Product;
@@ -27,11 +28,11 @@ class HomeController extends Controller
     }
     public static function countreview($id)
     {
-        return Comment::where('product_id',$id)->count();
+        return Comment::where('product_id',$id)->where('status','True')->count();
     }
     public static function avrgreview($id)
     {
-        return Comment::where('product_id',$id)->average('rate');
+        return Comment::where('product_id',$id)->where('status','True')->average('rate');
     }
 
     public function index()
@@ -61,8 +62,8 @@ class HomeController extends Controller
 
     public function faq()
     {
-        $setting = Setting::first();
-        return view('home.index', ['setting' => $setting]);
+        $dataList = Faq::all()->sortBy('position');
+        return view('home.faq', ['dataList' => $dataList]);
     }
 
     public function contact()
@@ -70,7 +71,11 @@ class HomeController extends Controller
         $setting = Setting::first();
         return view('home.contact', ['setting' => $setting]);
     }
-
+    public function aboutUs()
+    {
+        $setting = Setting::first();
+        return view('home.aboutUs', ['setting' => $setting]);
+    }
     public function sendMessage(Request $request): \Illuminate\Http\RedirectResponse
     {
         $data = new Message();
@@ -89,10 +94,9 @@ class HomeController extends Controller
     public function product($id, $title)
     {
         $data = Product::find($id);
-        $search = "True";
         $dataList = Image::where('product_id', $id)->get();
         $picked = Product::select('id', 'title', 'image', 'price', 'slug')->limit(3)->inRandomOrder()->get();
-        $reviews = Comment::where('product_id',$id)->get();
+        $reviews = Comment::where('product_id',$id)->where('status','True')->orderByDesc('created_at')->get();
         return view('home.productDetail',['data'=>$data,'dataList'=>$dataList,'picked'=>$picked,'reviews'=>$reviews]);
     }
 
@@ -103,11 +107,7 @@ class HomeController extends Controller
         return view('home.categoryProducts', ['dataList' => $dataList, 'data' => $data]);
     }
 
-    public function aboutUs()
-    {
-        $setting = Setting::first();
-        return view('home.aboutUs', ['setting' => $setting]);
-    }
+
     public function getProduct(Request $request): \Illuminate\Http\RedirectResponse
     {
         $search = $request->input('search');
@@ -154,11 +154,6 @@ class HomeController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
-    }
-
-    public function test($id)
-    {
-        echo "Id number:", $id;
     }
 
 }

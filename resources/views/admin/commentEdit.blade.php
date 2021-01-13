@@ -116,7 +116,7 @@
                 <div class="item form-group">
                     <div class="col-md-6 col-sm-6 offset-md-3">
                         <button class="btn btn-primary" type="reset">Reset</button>
-                        <button type="submit" class="btn btn-success">Edit Product</button>
+                        <button type="submit" class="btn btn-success">Edit Comment</button>
                     </div>
                 </div>
             </form>

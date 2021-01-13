@@ -34,7 +34,7 @@
                     <td>{{$rs->subject}}</td>
                     <td>{{$rs->comment}}</td>
                     <td>{{$rs->rate}}</td>
-                    <td>{{$rs->status}}</td>
+                    <td> @if($rs->status=='True') approved @elseif($rs->status=='False') Denied @else It is not approved yet @endif</td>
                     <td>{{$rs->created_at}}</td>
                     <td>
                         <a href="{{route('destroyMyComments',['id'=>$rs->id])}}"

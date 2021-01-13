@@ -1,4 +1,9 @@
 <!-- top navigation -->
+@php
+    $messages = \App\Http\Controllers\Admin\HomeController::messageList();
+    $numberOfMessages = count($messages);
+@endphp
+
 <div class="top_nav">
     <div class="nav_menu">
         <div class="nav toggle">
@@ -7,89 +12,51 @@
         <nav class="nav navbar-nav">
             <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
-                        @if(Auth::user()->profile_photo_path)
-                        <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                    @if(Auth::user()->profile_photo_path)
+                        <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
+                           id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
                             <img src="{{Storage::url(Auth::user()->profile_photo_path)}}" alt="">{{Auth::user()->name}}
                         </a>
-                        @else
-                        <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                    @else
+                        <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
+                           id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
                             <img src="{{asset('assets')}}/admin/images/img.jpg" alt="">{{Auth::user()->name}}
                         </a>
-                        @endif
+                    @endif
 
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                        <a class="dropdown-item"  href="javascript:;">
-                            <span class="badge bg-red pull-right">50%</span>
+                        <a class="dropdown-item" href="{{route('myProfile')}}"> Profile</a>
+                        <a class="dropdown-item" href="{{route('adminSetting')}}">
                             <span>Settings</span>
                         </a>
-                        <a class="dropdown-item"  href="javascript:;">Help</a>
-                        <a class="dropdown-item"  href="{{route('logout')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                        <a class="dropdown-item" href="{{route('logout')}}"><i class="fa fa-sign-out pull-right"></i>
+                            Log Out</a>
                     </div>
                 </li>
 
                 <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
+                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1"
+                       data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="badge bg-green">6</span>
+                        <span class="badge bg-green">{{$numberOfMessages}}</span>
                     </a>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                        <li class="nav-item">
-                            <a class="dropdown-item">
-                                <span class="image"><img src="{{asset('assets')}}/admin/images/img.jpg" alt="Profile Image" /></span>
-                                <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
+                        @foreach($messages as $rs)
+                            <li class="nav-item">
+                                <a href="{{route('adminMessageEdit',['id'=>$rs->id])}}"
+                                   onclick=" return !window.open(this.href, '',',height=700,width=1100,top=50,left=100')"
+                                   ;>
+
+                                    <span class="image"><i class="fa fa-user"></i></span>
+                                    <span>
+                          <span>{{$rs->name}}</span>
                         </span>
-                                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                                    <span class="message">
+                        {{$rs->message}}
                         </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="dropdown-item">
-                                <span class="image"><img src="{{asset('assets')}}/admin/images/img.jpg" alt="Profile Image" /></span>
-                                <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="dropdown-item">
-                                <span class="image"><img src="{{asset('assets')}}/admin/images/img.jpg" alt="Profile Image" /></span>
-                                <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="dropdown-item">
-                                <span class="image"><img src="{{asset('assets')}}/admin/images/img.jpg" alt="Profile Image" /></span>
-                                <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <div class="text-center">
-                                <a class="dropdown-item">
-                                    <strong>See All Alerts</strong>
-                                    <i class="fa fa-angle-right"></i>
                                 </a>
-                            </div>
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
             </ul>

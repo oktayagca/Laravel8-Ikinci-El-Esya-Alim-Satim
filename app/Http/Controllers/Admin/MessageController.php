@@ -16,7 +16,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $dataList = Message::all();
+        $dataList =Message::all()->sortByDesc('created_at');
         return view('admin.message',['dataList'=>$dataList]);
     }
 

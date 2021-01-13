@@ -46,7 +46,7 @@ class Review extends Component
             'subject'=>$this->subject,
             'comment'=>$this->review,
         ]);
-        session()->flash('message','Comment Send Successfully');
+        session()->flash('message','Comment send successfully.Will be published when the comment is approved');
         $this->resetInput();
 
     }

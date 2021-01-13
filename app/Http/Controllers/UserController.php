@@ -30,7 +30,7 @@ class UserController extends Controller
     }
     public function myComments()
     {
-        $dataList = Comment::where('user_id','=',Auth::user()->id)->get();
+        $dataList = Comment::where('user_id','=',Auth::user()->id)->orderbydesc('created_at')->get();
         return view('home.userComments',['dataList'=>$dataList]);
     }
     public function destroyMyComments($id): \Illuminate\Http\RedirectResponse

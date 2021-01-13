@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Comment List')
+@section('title', 'Frequently Asked QuestionList')
 @section('css')
     <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link href="{{asset('assets')}}/admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -18,21 +18,22 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Comments</h3>
+                    <h3>FAQ</h3>
                 </div>
             </div>
             <div class="clearfix"></div>
             <div class="row">
                 <div class="col-md-12 col-sm-12  ">
                     <div class="x_panel">
+                        <div class="x_title">
+                            <a class="btn btn-round btn-info" href="{{route('adminFaqCreate')}}">Add FAQ</a>
+                            @include('home.message')
+                            <div class="clearfix"></div>
+                        </div>
                         <div class="x_content">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 ">
                                     <div class="x_panel">
-                                        <div class="x_title">
-                                            <a>@include('home.message')</a>
-                                            <div class="clearfix"></div>
-                                        </div>
                                         <div class="x_content">
                                             <div class="row">
                                                 <div class="col-sm-12">
@@ -42,13 +43,10 @@
                                                             <thead>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Name</th>
-                                                                <th>Product</th>
-                                                                <th>Subject</th>
-                                                                <th>Comment</th>
-                                                                <th>Rate</th>
+                                                                <th>Position</th>
+                                                                <th>Question</th>
+                                                                <th>Answer</th>
                                                                 <th>Status</th>
-                                                                <th>Date</th>
                                                                 <th style="..." colspan="2">Actions</th>
                                                             </tr>
                                                             </thead>
@@ -57,21 +55,15 @@
 
                                                                 <tr role="row" class="odd">
                                                                     <td class="sorting_1">{{$rs->id}}</td>
-                                                                    <td>{{$rs->user->name}}</td>
-                                                                    <td>
-                                                                        <a target="_blank" href="{{route('product',['id'=>$rs->product->id,'title'=>$rs->Product->title])}}">{{$rs->product->title}}</a>
-                                                                    </td>
-                                                                    <td>{{$rs->subject}}</td>
-                                                                    <td>{{$rs->comment}}</td>
-                                                                    <td>{{$rs->rate}}</td>
+                                                                    <td>{{$rs->position}}</td>
+                                                                    <td>{{$rs->question}}</td>
+                                                                    <td>{!! $rs->answer !!}</td>
                                                                     <td>{{$rs->status}}</td>
-                                                                    <td>{{$rs->created_at}}</td>
                                                                     <td>
-                                                                        <a href="{{route('adminCommentShow',['id'=>$rs->id])}}"
-                                                                           onclick=" return !window.open(this.href, '',',height=700,width=1100,top=50,left=100')";><i
-                                                                                class=" fa fa-edit"></i></a></td>
+                                                                        <a href="{{route('adminFaqEdit',['id'=>$rs->id])}}"><i
+                                                                                class="fa fa-edit"></i></a></td>
                                                                     <td>
-                                                                        <a href="{{route('adminCommentDelete',['id'=>$rs->id])}}"
+                                                                        <a href="{{route('adminFaqDelete',['id'=>$rs->id])}}"
                                                                            onclick="return confirm('Delete! Are you sure')"><i
                                                                                 class="fa fa-trash"></i></a></td>
                                                                 </tr>

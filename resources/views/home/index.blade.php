@@ -11,6 +11,8 @@
 @section('priceRange')
     @include('home._priceRange')
 @endsection
+@section('css')
+@endsection
 @section('content')
     <div class="col-sm-9 padding-right">
 
@@ -147,12 +149,12 @@
                                                             $countreview = \App\Http\Controllers\HomeController::countreview($rs->id);
                                                         @endphp
                                                         <br>
-                                                        <span class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
-                                                        <span class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
-                                                        <span class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
-                                                        <span class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
-                                                        <span class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
-                                                        <i>({{$countreview}})</i>
+                                                        <span @if ($avgrev<1)style="color: black" @endif class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<2)style="color: black" @endif class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<3)style="color: black" @endif class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<4)style="color: black" @endif class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<5)style="color: black" @endif class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
+                                                        <i style="color: black">({{$countreview}})</i>
                                                     </div>
                                                 </div>
                                                 <p>{{substr($rs->title,0,101)}}</p></a>
@@ -183,12 +185,12 @@
                                                             $countreview = \App\Http\Controllers\HomeController::countreview($rs->id);
                                                         @endphp
                                                         <br>
-                                                        <span class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
-                                                        <span class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
-                                                        <span class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
-                                                        <span class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
-                                                        <span class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
-                                                        <i>({{$countreview}})</i>
+                                                        <span @if ($avgrev<1)style="color: black" @endif class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<2)style="color: black" @endif class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<3)style="color: black" @endif class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<4)style="color: black" @endif class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<5)style="color: black" @endif class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
+                                                        <i style="color: black">({{$countreview}})</i>
                                                     </div>
                                                 </div>
                                                 <p>{{substr($rs->title,0,101)}}</p></a>

@@ -9,16 +9,17 @@
         @csrf
         <span>
  @error('subject')  <span class="text-danger">{{$message}}</span>@enderror
-            <input wire:model="subject" type="text" placeholder="Subject"/>
+            <input style="color: black" wire:model="subject" type="text" placeholder="Subject"/>
             <input hidden type="text"/>
 
         </span>
         @error('review') <span class="text-danger">{{$message}}</span>@enderror
-        <textarea wire:model="review" class="input" placeholder="Your comment"></textarea>
+        <textarea style="color: black"  wire:model="review" class="input" placeholder="Your comment"></textarea>
 
         @error('rate') <span class="text-danger">{{$message}}</span>@enderror
         <div class="rate">
             <strong class="text-uppercase">Rating:</strong></br>
+
             <input type="radio" id="star5" wire:model="rate" name="rate" value="5"/>
             <label for="star5" title="text">5 stars</label>
             <input type="radio" id="star4" wire:model="rate" name="rate" value="4"/>
@@ -29,6 +30,7 @@
             <label for="star2" title="text">2 stars</label>
             <input type="radio" id="star1" wire:model="rate" name="rate" value="1"/>
             <label for="star1" title="text">1 star</label>
+
         </div>
 
         @auth

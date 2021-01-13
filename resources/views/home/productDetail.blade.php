@@ -6,12 +6,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
+
     <div class="col-sm-12 padding-right">
         <div class="product-details"><!--product-details-->
             <div class="col-sm-4">
                 <div class="view-product">
-                    <img id="" src="{{Storage::url($data->image)}}" alt=""/>
-                    <h3>ZOOM</h3>
+                    <img id="asd" src="{{Storage::url($data->image)}}" alt=""/>
+
                 </div>
                 </br>
                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">
@@ -22,8 +23,8 @@
                             @php $i=$i+1;@endphp
                             <div class="item @if($i==1)active @endif">
                                 <div class="col-sm-6">
-                                    <a href=""><img style="height: 84px" src="{{Storage::url($rs->image)}}"
-                                                    class="girl img-responsive" alt=""/></a>
+                                    <img id="resim" style="height: 84px" src="{{Storage::url($rs->image)}}"
+                                                    class="girl img-responsive" alt=""/>
                                 </div>
                             </div>
                         @endforeach

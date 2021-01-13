@@ -36,9 +36,10 @@
                 <ul class="nav side-menu">
                     <li><a href="{{route('adminCategory')}}"><i class="fa fa-edit"></i> Category </a></li>
                     <li><a href="{{route('adminProducts')}}"><i class="fa fa-desktop"></i> Products </a></li>
-                    <li><a href="{{route('adminSetting')}}"><i class="fa fa-table"></i> Settings</a></li>
-                    <li><a href="{{route('adminMessage')}}"><i class="fa fa-bar-chart-o"></i>Contact Messages</a></li>
-                    <li><a href="{{route('adminComment')}}"><i class="fa fa-clone"></i>Comments </a>
+                    <li><a href="{{route('adminSetting')}}"><i class="fa fa-gears"></i> Settings</a></li>
+                    <li><a href="{{route('adminMessage')}}"><i class="fa fa-comment"></i>Contact Messages</a></li>
+                    <li><a href="{{route('adminComment')}}"><i class="fa fa-comments-o"></i>Comments </a>
+                    <li><a href="{{route('adminFaq')}}"><i class="fa fa-question-circle"></i>FAQ </a>
                     </li>
                 </ul>
             </div>

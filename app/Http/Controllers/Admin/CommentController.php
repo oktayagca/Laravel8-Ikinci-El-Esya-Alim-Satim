@@ -15,7 +15,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $dataList = Comment::all();
+        $dataList =Comment::all()->sortByDesc('created_at');
         return view('admin.comment',['dataList'=>$dataList]);
     }
 

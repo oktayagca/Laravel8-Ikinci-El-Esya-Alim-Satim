@@ -26,7 +26,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('homePage');
 Route::get('/aboutUs', [HomeController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/references', [HomeController::class, 'references'])->name('references');
-Route::get('/fag', [HomeController::class, 'fag'])->name('faq');
+Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/send-message', [HomeController::class, 'sendMessage'])->name('sendMessage');
 Route::get('/product/{id}/{title}', [HomeController::class, 'product'])->name('product');
@@ -54,7 +54,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('edit/{id}',[App\Http\Controllers\Admin\ProductController::class,'edit'])->name('adminProductEdit');
         Route::post('update/{id}',[App\Http\Controllers\Admin\ProductController::class,'update'])->name('adminProductUpdate');
         Route::get('delete/{id}',[App\Http\Controllers\Admin\ProductController::class,'destroy'])->name('adminProductDelete');
-        Route::get('show', [App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('adminProductShow');
+        Route::get('show', [App\Http\Controllers\Admin\ProductController::class, 'show'])->name('adminProductShow');
     });
     #Message
     Route::prefix('messages')->group(function (){
@@ -86,6 +86,17 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     #Settings
     Route::get('setting',[App\Http\Controllers\Admin\SettingController::class,'index'])->name('adminSetting');
     Route::post('setting/update',[App\Http\Controllers\Admin\SettingController::class,'update'])->name('adminSettingUpdate');
+
+    #Faq
+    Route::prefix('faq')->group(function (){
+        Route::get('/',[App\Http\Controllers\Admin\FaqController::class,'index'])->name('adminFaq');
+        Route::get('create',[App\Http\Controllers\Admin\FaqController::class,'create'])->name('adminFaqCreate');
+        Route::post('store',[App\Http\Controllers\Admin\FaqController::class,'store'])->name('adminFaqStore');
+        Route::get('edit/{id}',[App\Http\Controllers\Admin\FaqController::class,'edit'])->name('adminFaqEdit');
+        Route::post('update/{id}',[App\Http\Controllers\Admin\FaqController::class,'update'])->name('adminFaqUpdate');
+        Route::get('delete/{id}',[App\Http\Controllers\Admin\FaqController::class,'destroy'])->name('adminFaqDelete');
+        Route::get('show', [App\Http\Controllers\Admin\FaqController::class, 'show'])->name('adminFaqShow');
+    });
 });
 
 Route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(function (){
