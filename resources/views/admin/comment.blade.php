@@ -30,9 +30,9 @@
                                 <div class="col-md-12 col-sm-12 ">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <a>@include('home.message')</a>
                                             <div class="clearfix"></div>
                                         </div>
+                                        <a>@include('home.message')</a>
                                         <div class="x_content">
                                             <div class="row">
                                                 <div class="col-sm-12">

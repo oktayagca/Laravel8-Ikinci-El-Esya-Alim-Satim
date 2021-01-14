@@ -2452,7 +2452,7 @@ textarea {
 
 .panel-default>.panel-heading a {
     display: block;
-    padding: 10px 15px;
+    #padding: 10px;
 }
 
 .panel-default>.panel-heading a:after {
@@ -2471,9 +2471,6 @@ textarea {
     -webkit-transition: -webkit-transform .25s linear;
 }
 
-.panel-default>.panel-heading a[aria-expanded="true"] {
-    background-color: #FE980F;
-}
 
 .panel-default>.panel-heading a[aria-expanded="true"]:after {
     content: "\2212";

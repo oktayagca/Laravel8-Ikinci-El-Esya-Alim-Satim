@@ -27,9 +27,9 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <a class="btn btn-round btn-info" href="{{route('adminFaqCreate')}}">Add FAQ</a>
-                            @include('home.message')
                             <div class="clearfix"></div>
                         </div>
+                        @include('home.message')
                         <div class="x_content">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 ">

@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -19,8 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $dataList = Product::all()->sortByDesc('created_at');
-        return view('admin.product',['dataList'=>$dataList]);
+        $dataList = Product::where('user_id',Auth::id())->get();
+        return view('home.userProduct',['dataList'=>$dataList]);
     }
 
     /**
@@ -31,7 +29,7 @@ class ProductController extends Controller
     public function create()
     {
         $dataList = Category::with('children')->get();
-        return  view('admin.productAdd',['dataList'=>$dataList]);
+        return  view('home.userProductAdd',['dataList'=>$dataList]);
     }
 
     /**
@@ -46,8 +44,8 @@ class ProductController extends Controller
         $data->title =$request->input('title');
         $data->keywords =$request->input('keywords');
         $data->description =$request->input('description');
-        $data->slug =$request->input('slug');
-        $data->status =$request->input('status');
+        $data->slug ='new';
+        $data->status ='False';
         $data->category_id =$request->input('category_id');
         $data->user_id =Auth::id();
         $data->price =$request->input('price');
@@ -61,7 +59,7 @@ class ProductController extends Controller
         }
         $data->save();
 
-        return redirect()->route('adminProducts')->with('success','Product added successfully');;
+        return redirect()->route('userProducts')->with('success','Prdouct added successfully.The product will be released when it is approved');
     }
 
     /**
@@ -85,7 +83,7 @@ class ProductController extends Controller
     {
         $dataList = Category::with('children')->get();
         $data = Product::find($id);
-        return view('admin.productEdit',['data'=>$data,'dataList'=>$dataList]);
+        return view('home.userProductEdit',['data'=>$data,'dataList'=>$dataList]);
     }
 
     /**
@@ -101,8 +99,6 @@ class ProductController extends Controller
         $data->title =$request->input('title');
         $data->keywords =$request->input('keywords');
         $data->description =$request->input('description');
-        $data->slug =$request->input('slug');
-        $data->status =$request->input('status');
         $data->category_id =$request->input('category_id');
         $data->user_id =Auth::id();
         $data->price =$request->input('price');
@@ -116,7 +112,7 @@ class ProductController extends Controller
         }
         $data->save();
 
-        return redirect()->route('adminProducts')->with('success','Product updated successfully');;
+        return redirect()->route('userProducts')->with('success','Product updated successfully');
     }
 
     /**
@@ -130,6 +126,6 @@ class ProductController extends Controller
         //DB::table('categories')->where('id','=',$id)->delete();
         $data = Product::find($id);
         $data->delete();
-        return redirect()->route('adminProducts')->with('success','Product deleted successfully');;
+        return redirect()->route('userProducts')->with('success','Product deleted successfully');
     }
 }

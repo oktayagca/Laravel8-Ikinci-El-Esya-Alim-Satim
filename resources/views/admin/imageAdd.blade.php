@@ -16,10 +16,12 @@
                         <h2>Product: {{$data->title}}</h2>
                         <div class="clearfix"></div>
                     </div>
+                    @include('home.message')
                     <div class="x_content">
                         <div class="row">
                             <div class="col-md-12 col-sm-12 ">
                                 <br/>
+
                                 <form action="{{route('adminImageStore',['product_id'=>$data->id])}}" method="post"
                                       data-parsley-validate
                                       class="form-horizontal form-label-left" enctype="multipart/form-data">
@@ -45,33 +47,41 @@
                             </div>
                         </div>
                         <div class="ln_solid"></div>
-                        @foreach($images  as $rs)
-                            <div class="col-md-55">
-                                <div class="thumbnail">
-                                    <div class="image view view-first">
-                                        @if($rs->image)
-                                            <img style="width: 100%; display: block;" src="{{Storage::url($rs->image)}}"
-                                                 alt="image"/>
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered"
+                                   style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>Image</th>
+                                    <th style="..." colspan="2">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($images as $rs)
+
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_1">{{$rs->id}}</td>
+                                        <td>{{$rs->title}}</td>
+                                        <td>
+                                            @if($rs->image)
+                                                <img src="{{Storage::url($rs->image)}}"
+                                                     height="50" alt="">
                                         @endif
-                                        <div class="mask">
-                                            <p>{{$rs->title}}</p>
-                                            <div class="tools tools-bottom">
-                                                <a href="{{route('adminImageDelete',['id'=>$rs->id,'product_id'=>$data->id])}}"
-                                                   onclick="return confirm('Image will be delete! Are you sure')"><i
-                                                        class="fa fa-trash"></i></a>
-                                                <a href="{{route('adminImageEdit',['id'=>$rs->id,'product_id'=>$data->id])}}"><i
-                                                        class="fa fa-edit"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <p><strong>Image Id: {{$rs->id}} </strong>
-                                        </p>
-                                        <p>Image Title: {{$rs->title}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                                        <td>
+                                            <a href="{{route('adminImageDelete',['id'=>$rs->id,'product_id'=>$data->id])}}"
+                                               onclick="return confirm('Image will be delete! Are you sure')"><i
+                                                    class="fa fa-trash"></i></a></td>
+                                        <td>
+                                            <a href="{{route('adminImageEdit',['id'=>$rs->id,'product_id'=>$data->id])}}"><i
+                                                    class="fa fa-edit"></i></a></td>
+
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

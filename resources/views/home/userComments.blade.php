@@ -1,5 +1,5 @@
 @extends('layouts.home')
-@section('title','User Profile')
+@section('title','My Comments')
 
 @section('menu')
     @parent

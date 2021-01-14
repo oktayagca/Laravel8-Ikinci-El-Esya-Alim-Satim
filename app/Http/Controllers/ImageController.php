@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,14 +30,14 @@ class ImageController extends Controller
     {
         $data = Product::find($product_id);
         $images = DB::table('images')->where('product_id','=',$product_id)->get();
-        return view('admin.imageAdd',['data'=>$data,'images'=>$images]);
+        return view('home.userProductImageAdd',['data'=>$data,'images'=>$images]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request,$product_id)
     {
@@ -52,7 +49,7 @@ class ImageController extends Controller
         }
         $data->save();
 
-        return redirect()->route('adminImageCreate',['product_id'=>$product_id])->with('success','Image Added successfully');
+        return redirect()->route('userImageCreate',['product_id'=>$product_id])->with('success','Image Added successfully');;
     }
 
     /**
@@ -74,8 +71,7 @@ class ImageController extends Controller
      */
     public function edit($id,$product_id)
     {
-        $data = Image::find($id);
-        return view('admin.imageEdit',['data'=>$data,'product_id'=>$product_id]);
+        //
     }
 
     /**
@@ -87,26 +83,19 @@ class ImageController extends Controller
      */
     public function update(Request $request,$id,$product_id)
     {
-        $data = Image::find($id);
-        $data->title =$request->input('title');
-        $data->product_id =$product_id;
-        if($request->file('image')) {
-            $data->image = Storage::putFile('images', $request->file('image'));
-        }
-        $data->save();
-        return redirect()->route('adminImageCreate',['product_id'=>$product_id])->with('success','Image Updated successfully');;
+    //
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Image $image,$id,$product_id)
     {
         $data = Image::find($id);
         $data->delete();
-        return redirect()->route('adminImageCreate',['product_id'=>$product_id])->with('success','Image deleted successfully');
+        return redirect()->route('userImageCreate',['product_id'=>$product_id])->with('success','Image deleted successfully');;
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -106,6 +108,25 @@ Route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(fu
 });
 Route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
     Route::get('/profile',[UserController::class,'index'])->name('userprofile');
+
+    Route::prefix('product')->group(function (){
+        Route::get('/',[ProductController::class,'index'])->name('userProducts');
+        Route::get('create',[ProductController::class,'create'])->name('userProductCreate');
+        Route::post('store',[ProductController::class,'store'])->name('userProductStore');
+        Route::get('edit/{id}',[ProductController::class,'edit'])->name('userProductEdit');
+        Route::post('update/{id}',[ProductController::class,'update'])->name('userProductUpdate');
+        Route::get('delete/{id}',[ProductController::class,'destroy'])->name('userProductDelete');
+        Route::get('show', [ProductController::class, 'show'])->name('userProductShow');
+    });
+
+    Route::prefix('image')->group(function (){
+        Route::get('create/{product_id}',[ImageController::class,'create'])->name('userImageCreate');
+        Route::post('store/{product_id}',[ImageController::class,'store'])->name('userImageStore');
+        Route::get('edit/{id}/{product_id}',[ImageController::class,'edit'])->name('userImageEdit');
+        Route::post('update/{id}/{product_id}',[ImageController::class,'update'])->name('userImageUpdate');
+        Route::get('delete/{id}/{product_id}',[ImageController::class,'destroy'])->name('userImageDelete');
+        Route::get('show', [ImageController::class, 'show'])->name('adminImageShow');
+    });
 });
 
 Route::get('/admin/login', [HomeController::class, 'login'])->name('adminLogin');

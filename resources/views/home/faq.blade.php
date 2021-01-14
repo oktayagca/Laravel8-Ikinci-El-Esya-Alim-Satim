@@ -7,8 +7,8 @@
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             @foreach($dataList as $rs)
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
+                    <div class="panel-heading" role="tab" id="headingOne"  >
+                        <h4 class="panel-title" style="padding: 10px 15px">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{$rs->id}}"
                                aria-expanded="true" aria-controls="collapseOne">
                                 {{$rs->question}}
