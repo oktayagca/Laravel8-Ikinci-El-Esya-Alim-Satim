@@ -15,7 +15,7 @@
 @endsection
 @section('content')
     <div class="col-sm-9 padding-right">
-
+        @include('home.message')
         <div class="features_items"><!--features_items-->
             <h2 class="title text-center">Daily Items</h2>
             @foreach($daily as $rs)
@@ -43,9 +43,6 @@
                                     </div>
                                 </div>
                                 <p>{{substr($rs->title,0,101)}}</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
-                                    to
-                                    cart</a>
                             </div>
                             <div class="product-overlay">
                                 <div class="overlay-content">
@@ -60,12 +57,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="choose">
-                            <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                <li><a href=""><i class="fa fa-plus-square"></i>Add to cart</a></li>
-                            </ul>
+
+                        <div class="productinfo text-center">
+                            <form action="{{route('userShopcartAdd',['id'=>$rs->id])}}" method="post">
+                                @csrf
+                                <input hidden name="quantity" type="number" value="1"/>
+                                <button class="btn btn-default add-to-cart" type="submit"><i class="fa fa-shopping-cart"></i>Add
+                                    to cart
+                                </button>
+                            </form>
                         </div>
+
                     </div>
                 </div>
             @endforeach
@@ -92,18 +94,20 @@
                                                 $countreview = \App\Http\Controllers\HomeController::countreview($rs->id);
                                             @endphp
                                             <br>
-                                            <span class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
-                                            <span class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
-                                            <span class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
-                                            <span class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
-                                            <span class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
+                                            <span
+                                                class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
+                                            <span
+                                                class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
+                                            <span
+                                                class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
+                                            <span
+                                                class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
+                                            <span
+                                                class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
                                             <i>({{$countreview}})</i>
                                         </div>
                                     </div>
                                     <p>{{substr($rs->title,0,101)}}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
-                                        to
-                                        cart</a>
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
@@ -114,11 +118,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href=""><i class="fa fa-plus-square"></i>Add to cart</a></li>
-                                </ul>
+                            <div class="productinfo text-center">
+                            <form action="{{route('userShopcartAdd',['id'=>$rs->id])}}" method="post">
+                                @csrf
+                                <input hidden name="quantity" type="number" value="1"/>
+                                <button class="btn btn-default add-to-cart" type="submit"><i class="fa fa-shopping-cart"></i>Add
+                                    to cart
+                                </button>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -149,17 +156,27 @@
                                                             $countreview = \App\Http\Controllers\HomeController::countreview($rs->id);
                                                         @endphp
                                                         <br>
-                                                        <span @if ($avgrev<1)style="color: black" @endif class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
-                                                        <span @if ($avgrev<2)style="color: black" @endif class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
-                                                        <span @if ($avgrev<3)style="color: black" @endif class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
-                                                        <span @if ($avgrev<4)style="color: black" @endif class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
-                                                        <span @if ($avgrev<5)style="color: black" @endif class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<1)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<2)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<3)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<4)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<5)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
                                                         <i style="color: black">({{$countreview}})</i>
                                                     </div>
                                                 </div>
                                                 <p>{{substr($rs->title,0,101)}}</p></a>
-                                            <a href="#" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <form action="{{route('userShopcartAdd',['id'=>$rs->id])}}" method="post">
+                                                @csrf
+                                                <input hidden name="quantity" type="number" value="1"/>
+                                                <button class="btn btn-default add-to-cart" type="submit"><i class="fa fa-shopping-cart"></i>Add
+                                                    to cart
+                                                </button>
+                                            </form>
                                         </div>
 
                                     </div>
@@ -185,17 +202,27 @@
                                                             $countreview = \App\Http\Controllers\HomeController::countreview($rs->id);
                                                         @endphp
                                                         <br>
-                                                        <span @if ($avgrev<1)style="color: black" @endif class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
-                                                        <span @if ($avgrev<2)style="color: black" @endif class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
-                                                        <span @if ($avgrev<3)style="color: black" @endif class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
-                                                        <span @if ($avgrev<4)style="color: black" @endif class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
-                                                        <span @if ($avgrev<5)style="color: black" @endif class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<1)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<2)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<3)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<4)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<4)-o empty @else checked @endif "></span>
+                                                        <span @if ($avgrev<5)style="color: black"
+                                                              @endif class="fa fa-star @if ($avgrev<5)-o empty @else checked @endif "></span>
                                                         <i style="color: black">({{$countreview}})</i>
                                                     </div>
                                                 </div>
                                                 <p>{{substr($rs->title,0,101)}}</p></a>
-                                            <a href="#" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <form action="{{route('userShopcartAdd',['id'=>$rs->id])}}" method="post">
+                                                @csrf
+                                                <input hidden name="quantity" type="number" value="1"/>
+                                                <button class="btn btn-default add-to-cart" type="submit"><i class="fa fa-shopping-cart"></i>Add
+                                                    to cart
+                                                </button>
+                                            </form>
                                         </div>
 
                                     </div>

@@ -6,7 +6,7 @@
     <div class="panel panel-default">
         @foreach($parentCategories as $rs)
 
-            <div class="panel-heading">
+            <div class="panel-heading ">
                 <h4 class="panel-title">
                     @if(count($rs->children)) <a data-toggle="collapse"  href="#{{$rs->id}}"><span class="badge pull-right"> <i
                                 class="fa fa-plus"></i> </span></a>@endif

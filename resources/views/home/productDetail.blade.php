@@ -8,6 +8,7 @@
 @section('content')
 
     <div class="col-sm-12 padding-right">
+        @include('home.message')
         <div class="product-details"><!--product-details-->
             <div class="col-sm-4">
                 <div class="view-product">
@@ -24,7 +25,7 @@
                             <div class="item @if($i==1)active @endif">
                                 <div class="col-sm-6">
                                     <img id="resim" style="height: 84px" src="{{Storage::url($rs->image)}}"
-                                                    class="girl img-responsive" alt=""/>
+                                         class="girl img-responsive" alt=""/>
                                 </div>
                             </div>
                         @endforeach
@@ -40,27 +41,40 @@
                 </div>
 
             </div>
+
             <div class="col-sm-7">
                 <div class="product-information"><!--/product-information-->
+
                     <h2>{{$data->title}}</h2>
                     <p>Product ID: {{$data->id}}</p>
-                    <span>
-                        <span>US ${{$data->price}}</span>
+
+
+                    <form action="{{route('userShopcartAdd',['id'=>$data->id])}}" method="post">
+                        @csrf
+                        <span>
+                        <div class="col-sm-12" style="padding:0px">
+                            <span>US ${{$data->price}}</span>
+
                         <label>Quantity:</label>
-                        <input type="text" value="{{$data->quantity}}"/>
-                        <button type="button" class="btn btn-fefault cart">
+                        <input name="quantity" type="number" value="1" max="{{$data->quantity}}"/>
+
+                        <button type="submit" class="btn btn-default cart">
                             <i class="fa fa-shopping-cart"></i>
                             Add to cart
                         </button>
-                    </span>
+                             </div>
+                                </span>
+                    </form>
+
                     <p><b>Availability:</b> @if($data->status=='True')In Stock @else Sold out  @endif</p>
                     <p><b>Location:</b> {{$data->location}}</p>
+                    <p><b>Quantity:</b> {{$data->quantity}}</p>
                     <p><b>Brand:</b> E-SHOPPER</p>
                     <p><b>Description:</b> {{$data->description}}</p>
                     @php
                         $avgrev = \App\Http\Controllers\HomeController::avrgreview($data->id);
                         $countreview = \App\Http\Controllers\HomeController::countreview($data->id);
-                        @endphp
+                    @endphp
                     <span class="fa fa-star @if ($avgrev<1)-o empty @else checked @endif "></span>
                     <span class="fa fa-star @if ($avgrev<2)-o empty @else checked @endif "></span>
                     <span class="fa fa-star @if ($avgrev<3)-o empty @else checked @endif "></span>

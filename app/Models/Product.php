@@ -19,4 +19,9 @@ class Product extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function shopcart(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Shopcart::class);
+    }
 }

@@ -20,8 +20,6 @@
                             <img  style="height: 249px" src="{{Storage::url($rs->image)}}" alt=""/>
                             <h2>{{$rs->price}}</h2>
                             <p>{{substr($rs->title,0,101)}}</p>
-                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to
-                                cart</a>
                         </div>
                         <div class="product-overlay">
                             <div class="overlay-content">
@@ -31,11 +29,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="choose">
-                        <ul class="nav nav-pills nav-justified">
-                            <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                            <li><a href=""><i class="fa fa-shopping-cart"></i>Add to cart</a></li>
-                        </ul>
+                    <div class="productinfo text-center">
+                        <form action="{{route('userShopcartAdd',['id'=>$rs->id])}}" method="post">
+                            @csrf
+                            <input hidden name="quantity" type="number" value="1"/>
+                            <button class="btn btn-default add-to-cart" type="submit"><i class="fa fa-shopping-cart"></i>Add
+                                to cart
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

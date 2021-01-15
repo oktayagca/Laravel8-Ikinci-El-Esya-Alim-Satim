@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopcartController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +37,6 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/send-message', [HomeController::class, 'sendMessage'])->name('sendMessage');
 Route::get('/product/{id}/{title}', [HomeController::class, 'product'])->name('product');
 Route::get('/categoryproducts/{id}/{slug}', [HomeController::class, 'categoryProducts'])->name('categoryProducts');
-Route::get('/addtocart/{id}', [HomeController::class, 'addToCart'])->name('addToCart');
 Route::post('/getProduct', [HomeController::class, 'getProduct'])->name('getProduct');
 Route::get('/productlist/{search}', [HomeController::class, 'productList'])->name('productList');
 //admin panel route
@@ -79,25 +82,25 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     #comment
     Route::prefix('comment')->group(function (){
-        Route::get('/',[App\Http\Controllers\Admin\CommentController::class,'index'])->name('adminComment');
-        Route::post('update/{id}',[App\Http\Controllers\Admin\CommentController::class,'update'])->name('adminCommentUpdate');
-        Route::get('delete/{id}',[App\Http\Controllers\Admin\CommentController::class,'destroy'])->name('adminCommentDelete');
-        Route::get('show/{id}', [App\Http\Controllers\Admin\CommentController::class, 'show'])->name('adminCommentShow');
+        Route::get('/',[CommentController::class,'index'])->name('adminComment');
+        Route::post('update/{id}',[CommentController::class,'update'])->name('adminCommentUpdate');
+        Route::get('delete/{id}',[CommentController::class,'destroy'])->name('adminCommentDelete');
+        Route::get('show/{id}', [CommentController::class, 'show'])->name('adminCommentShow');
     });
 
     #Settings
-    Route::get('setting',[App\Http\Controllers\Admin\SettingController::class,'index'])->name('adminSetting');
-    Route::post('setting/update',[App\Http\Controllers\Admin\SettingController::class,'update'])->name('adminSettingUpdate');
+    Route::get('setting',[SettingController::class,'index'])->name('adminSetting');
+    Route::post('setting/update',[SettingController::class,'update'])->name('adminSettingUpdate');
 
     #Faq
     Route::prefix('faq')->group(function (){
-        Route::get('/',[App\Http\Controllers\Admin\FaqController::class,'index'])->name('adminFaq');
-        Route::get('create',[App\Http\Controllers\Admin\FaqController::class,'create'])->name('adminFaqCreate');
-        Route::post('store',[App\Http\Controllers\Admin\FaqController::class,'store'])->name('adminFaqStore');
-        Route::get('edit/{id}',[App\Http\Controllers\Admin\FaqController::class,'edit'])->name('adminFaqEdit');
-        Route::post('update/{id}',[App\Http\Controllers\Admin\FaqController::class,'update'])->name('adminFaqUpdate');
-        Route::get('delete/{id}',[App\Http\Controllers\Admin\FaqController::class,'destroy'])->name('adminFaqDelete');
-        Route::get('show', [App\Http\Controllers\Admin\FaqController::class, 'show'])->name('adminFaqShow');
+        Route::get('/',[FaqController::class,'index'])->name('adminFaq');
+        Route::get('create',[FaqController::class,'create'])->name('adminFaqCreate');
+        Route::post('store',[FaqController::class,'store'])->name('adminFaqStore');
+        Route::get('edit/{id}',[FaqController::class,'edit'])->name('adminFaqEdit');
+        Route::post('update/{id}',[FaqController::class,'update'])->name('adminFaqUpdate');
+        Route::get('delete/{id}',[FaqController::class,'destroy'])->name('adminFaqDelete');
+        Route::get('show', [FaqController::class, 'show'])->name('adminFaqShow');
     });
 });
 
@@ -126,6 +129,13 @@ Route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
         Route::post('update/{id}/{product_id}',[ImageController::class,'update'])->name('userImageUpdate');
         Route::get('delete/{id}/{product_id}',[ImageController::class,'destroy'])->name('userImageDelete');
         Route::get('show', [ImageController::class, 'show'])->name('adminImageShow');
+    });
+
+    Route::prefix('shopcart')->group(function (){
+        Route::get('/',[ShopcartController::class,'index'])->name('userShopcart');
+        Route::post('store/{id}',[ShopcartController::class,'store'])->name('userShopcartAdd');
+        Route::post('update/{id}',[ShopcartController::class,'update'])->name('userShopcartUpdate');
+        Route::get('delete/{id}',[ShopcartController::class,'destroy'])->name('userShopcartDelete');
     });
 });
 
