@@ -34,16 +34,25 @@
             <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+                    <li><a href="{{route('adminHome')}}"><i class="fa fa-home"></i> Home </a></li>
                     <li><a href="{{route('adminCategory')}}"><i class="fa fa-edit"></i> Category </a></li>
                     <li><a href="{{route('adminProducts')}}"><i class="fa fa-desktop"></i> Products </a></li>
                     <li><a href="{{route('adminSetting')}}"><i class="fa fa-gears"></i> Settings</a></li>
                     <li><a href="{{route('adminMessage')}}"><i class="fa fa-comment"></i>Contact Messages</a></li>
                     <li><a href="{{route('adminComment')}}"><i class="fa fa-comments-o"></i>Comments </a>
-                    <li><a href="{{route('adminFaq')}}"><i class="fa fa-question-circle"></i>FAQ </a>
+                    <li><a><i class="fa fa-table"></i> Orders <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('adminOrders')}}">All Orders</a></li>
+                            <li><a href="{{route('adminOrderList',['status'=>'New'])}}">New Orders</a></li>
+                            <li><a href="{{route('adminOrderList',['status'=>'Accepted'])}}">Accepted Orders</a></li>
+                            <li><a href="{{route('adminOrderList',['status'=>'Cancelled'])}}">Cancelled Orders</a></li>
+                            <li><a href="{{route('adminOrderList',['status'=>'Shipping'])}}">Shipping Orders</a></li>
+                            <li><a href="{{route('adminOrderList',['status'=>'Completed'])}}">Completed Orders</a></li>
+                        </ul>
                     </li>
+                    <li><a href="{{route('adminFaq')}}"><i class="fa fa-question-circle"></i>FAQ </a></li>
                 </ul>
             </div>
         </div>
-
     </div>
 </div>

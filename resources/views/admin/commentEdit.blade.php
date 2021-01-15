@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{asset('assets')}}/admin/images/favicon.ico" type="image/ico"/>
 
-    <title>@yield('title')</title>
+    <title>Comment Edit</title>
 
     <!-- Bootstrap -->
     <link href="{{asset('assets')}}/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

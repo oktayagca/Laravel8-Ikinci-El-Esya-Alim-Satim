@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopcartController;
 use App\Http\Controllers\UserController;
@@ -102,6 +103,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::post('update/{id}',[FaqController::class,'update'])->name('adminFaqUpdate');
         Route::get('delete/{id}',[FaqController::class,'destroy'])->name('adminFaqDelete');
         Route::get('show', [FaqController::class, 'show'])->name('adminFaqShow');
+    });
+    #order
+    Route::prefix('order')->group(function (){
+        Route::get('/',[AdminOrderController::class,'index'])->name('adminOrders');
+        Route::get('list/{status}',[AdminOrderController::class,'list'])->name('adminOrderList');
+        Route::post('create',[AdminOrderController::class,'create'])->name('adminOrderAdd');
+        Route::post('store',[AdminOrderController::class,'store'])->name('adminOrderStore');
+        Route::get('edit/{id}',[AdminOrderController::class,'edit'])->name('adminOrderEdit');
+        Route::post('update/{id}',[AdminOrderController::class,'update'])->name('adminOrderUpdate');
+        Route::post('itemupdate/{id}',[AdminOrderController::class,'itemupdate'])->name('adminOrderItemUpdate');
+        Route::get('delete/{id}',[AdminOrderController::class,'destroy'])->name('adminOrderDelete');
+        Route::get('show/{id}', [AdminOrderController::class, 'show'])->name('adminOrderShow');
     });
 });
 
