@@ -19,12 +19,12 @@
                         <td class="price">Price</td>
                         <td class="quantity">Quantity</td>
                         <td class="total">Total</td>
-                        <td ></td>
+                        <td></td>
                     </tr>
                     </thead>
                     <tbody>
                     @php
-                    $total=0;
+                        $total=0;
                     @endphp
                     @include('home.message')
                     @foreach($dataList as $rs)
@@ -48,7 +48,7 @@
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
                                     <form action="{{route('userShopcartUpdate',['id'=>$rs->id])}}" method="post">
-                                         @csrf
+                                        @csrf
                                         <input
                                             onchange="this.form.submit()"
                                             class="cart_quantity_input"
@@ -67,7 +67,7 @@
                                         class="fa fa-times"></i></a></td>
                         </tr>
                         @php
-                        $total +=$rs->product->price * $rs->quantity;
+                            $total +=$rs->product->price * $rs->quantity;
                         @endphp
                     @endforeach
                     <tr>
@@ -91,7 +91,16 @@
                                     <td><span>{{$total}}</span></td>
                                 </tr>
                             </table>
+                            <form action="{{route('userOrderAdd')}}" method="post">
+                                @csrf
+                                <input hidden type="text" name="total" value="{{$total}}">
+                                <div class="pull-right">
+                                    <button type="submit" class="btn btn-default add-to-cart">Place
+                                        Holder</button>
+                                </div>
+                            </form>
                         </td>
+
                     </tr>
                     </tbody>
                 </table>

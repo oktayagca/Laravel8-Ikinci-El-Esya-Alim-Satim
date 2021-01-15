@@ -66,4 +66,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Shopcart::class);
     }
+    public function order(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+    public function orderitem(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Orderitem::class);
+    }
+
 }
