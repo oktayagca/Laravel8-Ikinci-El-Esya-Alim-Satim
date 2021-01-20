@@ -309,11 +309,14 @@ a#scrollUp i {
     outline: medium none;
     padding-left: 10px;
     width: 155px;
-    background-image: url(../images/home/searchicon.png);
-    background-repeat: no-repeat;
-    background-position: 130px;
 }
-
+.search-button-link{
+    line-height: 35px;
+    border: medium none;
+    color: #B2B2B2;
+    padding-right: 10px;
+    outline: medium none;
+}
 
 /*  Dropdown menu*/
 

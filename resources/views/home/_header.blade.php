@@ -104,11 +104,13 @@
                         <div class="form-group col-md-12">
                             <form action="{{route('getProduct')}}" method="post">
                                 @csrf
+                                <div class="search_box pull-right">
                                 <div class="form-group col-md-8">
                                     @livewire('search')
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <button type="submit" class=" "><i class="fa fa-search"></i></button>
+                                <div class="form-group col-md-4 ">
+                                    <button type="submit" class="search-button-link"><i class="fa fa-search"></i></button>
+                                </div>
                                 </div>
                             </form>
                         </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\ComingOrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
@@ -27,9 +28,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-//Route::get('/home', function () {
-   // return view('home.index', ['name' => 'oktay ağca']);
-//});//eğer bir dosya çağıracaksak bu yapıyı kullanabiliriz
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('homePage');
 Route::get('/aboutUs', [HomeController::class, 'aboutUs'])->name('aboutUs');
@@ -38,9 +37,10 @@ Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/send-message', [HomeController::class, 'sendMessage'])->name('sendMessage');
 Route::get('/product/{id}/{title}', [HomeController::class, 'product'])->name('product');
-Route::get('/categoryproducts/{id}/{slug}', [HomeController::class, 'categoryProducts'])->name('categoryProducts');
+Route::get('/category-products/{id}/{slug}', [HomeController::class, 'categoryProducts'])->name('categoryProducts');
 Route::post('/getProduct', [HomeController::class, 'getProduct'])->name('getProduct');
-Route::get('/productlist/{search}', [HomeController::class, 'productList'])->name('productList');
+Route::get('/product-list/{search}', [HomeController::class, 'productList'])->name('productList');
+
 //admin panel route
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('adminHome');
@@ -53,7 +53,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('category/show', [App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('adminCategoryAddShow');
 
     #Product
-
     Route::prefix('product')->group(function (){
         Route::get('/',[App\Http\Controllers\Admin\ProductController::class,'index'])->name('adminProducts');
         Route::get('create',[App\Http\Controllers\Admin\ProductController::class,'create'])->name('adminProductCreate');
@@ -112,17 +111,20 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::post('store',[AdminOrderController::class,'store'])->name('adminOrderStore');
         Route::get('edit/{id}',[AdminOrderController::class,'edit'])->name('adminOrderEdit');
         Route::post('update/{id}',[AdminOrderController::class,'update'])->name('adminOrderUpdate');
-        Route::post('itemupdate/{id}',[AdminOrderController::class,'itemupdate'])->name('adminOrderItemUpdate');
+        Route::post('item-update/{id}',[AdminOrderController::class,'itemupdate'])->name('adminOrderItemUpdate');
         Route::get('delete/{id}',[AdminOrderController::class,'destroy'])->name('adminOrderDelete');
         Route::get('show/{id}', [AdminOrderController::class, 'show'])->name('adminOrderShow');
     });
 });
 
-Route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(function (){
+#userAccount
+Route::middleware('auth')->prefix('my-account')->namespace('my-account')->group(function (){
     Route::get('/',[UserController::class,'index'])->name('myProfile');
     Route::get('/my-comments',[UserController::class,'myComments'])->name('myComments');
-    Route::get('/destroymyreview/{id}',[UserController::class,'destroyMyComments'])->name('destroyMyComments');
+    Route::get('/destroy-my-comments/{id}',[UserController::class,'destroyMyComments'])->name('destroyMyComments');
 });
+
+#user
 Route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
     Route::get('/profile',[UserController::class,'index'])->name('userprofile');
 
@@ -145,14 +147,14 @@ Route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
         Route::get('show', [ImageController::class, 'show'])->name('adminImageShow');
     });
 
-    Route::prefix('shopcart')->group(function (){
+    Route::prefix('shop-cart')->group(function (){
         Route::get('/',[ShopcartController::class,'index'])->name('userShopcart');
         Route::post('store/{id}',[ShopcartController::class,'store'])->name('userShopcartAdd');
         Route::post('update/{id}',[ShopcartController::class,'update'])->name('userShopcartUpdate');
         Route::get('delete/{id}',[ShopcartController::class,'destroy'])->name('userShopcartDelete');
     });
 
-    Route::prefix('order')->group(function (){
+    Route::prefix('my-order')->group(function (){
         Route::get('/',[OrderController::class,'index'])->name('userOrders');
         Route::post('create',[OrderController::class,'create'])->name('userOrderAdd');
         Route::post('store',[OrderController::class,'store'])->name('userOrderStore');
@@ -161,8 +163,20 @@ Route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
         Route::get('delete/{id}',[OrderController::class,'destroy'])->name('userOrderDelete');
         Route::get('show/{id}', [OrderController::class, 'show'])->name('userOrderShow');
     });
+    Route::prefix('order')->group(function (){
+        Route::get('/',[ComingOrderController::class,'index'])->name('userComingOrders');
+        Route::get('list/{status}',[ComingOrderController::class,'list'])->name('userComingOrderList');
+        Route::post('create',[ComingOrderController::class,'create'])->name('userComingOrderAdd');
+        Route::post('store',[ComingOrderController::class,'store'])->name('userComingOrderStore');
+        Route::get('edit/{id}',[ComingOrderController::class,'edit'])->name('userComingOrderEdit');
+        Route::post('update/{id}',[ComingOrderController::class,'update'])->name('userComingOrderUpdate');
+        Route::post('item-update/{id}',[ComingOrderController::class,'itemupdate'])->name('userComingOrderItemUpdate');
+        Route::get('delete/{id}',[ComingOrderController::class,'destroy'])->name('userComingOrderDelete');
+        Route::get('show/{id}/{product_id}', [ComingOrderController::class, 'show'])->name('userComingOrderShow');
+    });
 });
 
+#login
 Route::get('/admin/login', [HomeController::class, 'login'])->name('adminLogin');
 Route::post('admin/loginCheck', [HomeController::class, 'loginCheck'])->name('adminLoginCheck');
 Route::get('logout', [HomeController::class, 'logout'])->name('logout');
