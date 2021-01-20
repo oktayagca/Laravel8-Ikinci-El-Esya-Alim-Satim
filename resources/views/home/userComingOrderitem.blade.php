@@ -119,7 +119,6 @@
                                         </thead>
                                         <tbody>
                                         <h2>Order İtem Information</h2>
-                                        @include('home.message')
                                         @foreach($dataList as $rs)
                                             <form action="{{route('userComingOrderItemUpdate',['id'=>$rs->id])}}"
                                                   method="post"

@@ -17,7 +17,7 @@ class ComingOrderController extends Controller
      */
     public function index()
     {
-        $dataList = Orderitem::all();
+        $dataList = Orderitem::all()->sortByDesc('created_at');
         $dataList2=collect();
 
         foreach ($dataList as $rs){

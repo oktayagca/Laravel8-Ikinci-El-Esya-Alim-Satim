@@ -47,6 +47,16 @@
             <h4 class="panel-title"><a href="{{route('userProducts')}}">My Products</a></h4>
         </div>
     </div>
+    @php
+        $userRoles = Auth::user()->roles->pluck('name');""
+    @endphp
+    @if($userRoles->contains('admin'))
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="{{route('adminHome')}}" target="_blank">Admin Panel</a></h4>
+            </div>
+        </div>
+    @endif
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title"><a href="{{route('logout')}}">Logout</a></h4>

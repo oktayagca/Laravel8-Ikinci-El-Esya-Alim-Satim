@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $dataList = Order::all();
+        $dataList = Order::all()->sortByDesc('created_at');
         return view('admin.orders',['dataList'=>$dataList,'status'=>'All']);
     }
     public function list($status)

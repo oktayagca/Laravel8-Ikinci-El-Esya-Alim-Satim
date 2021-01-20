@@ -33,6 +33,7 @@
                 <form action="{{ route('adminLoginCheck') }}" method="post">
                     @csrf
                     <h1>Login Form</h1>
+                    @include('home.message')
                     <div>
                         <input id='email' type="email" name='email' class="form-control" placeholder="E-mail"  >
                     </div>
