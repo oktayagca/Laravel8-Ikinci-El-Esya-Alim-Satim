@@ -35,7 +35,8 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                     <li><a href="{{route('adminHome')}}"><i class="fa fa-home"></i> Home </a></li>
-                    <li><a href="{{route('adminCategory')}}"><i class="fa fa-edit"></i> Category </a></li>
+                    <li><a href="{{route('adminUser')}}"><i class="fa fa-users"></i> Users </a></li>
+                    <li><a href="{{route('adminCategory')}}"><i class="fa fa-edit"></i> Categories </a></li>
                     <li><a href="{{route('adminProducts')}}"><i class="fa fa-desktop"></i> Products </a></li>
                     <li><a href="{{route('adminSetting')}}"><i class="fa fa-gears"></i> Settings</a></li>
                     <li><a href="{{route('adminMessage')}}"><i class="fa fa-comment"></i>Contact Messages</a></li>

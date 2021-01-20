@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopcartController;
 use App\Http\Controllers\UserController;
@@ -116,6 +117,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::post('item-update/{id}',[AdminOrderController::class,'itemupdate'])->name('adminOrderItemUpdate');
             Route::get('delete/{id}',[AdminOrderController::class,'destroy'])->name('adminOrderDelete');
             Route::get('show/{id}', [AdminOrderController::class, 'show'])->name('adminOrderShow');
+        });
+        Route::prefix('user')->group(function (){
+            Route::get('/',[AdminUserController::class,'index'])->name('adminUser');
+            Route::post('create',[AdminUserController::class,'create'])->name('adminUserAdd');
+            Route::post('store',[AdminUserController::class,'store'])->name('adminUserStore');
+            Route::get('edit/{id}',[AdminUserController::class,'edit'])->name('adminUserEdit');
+            Route::post('update/{id}',[AdminUserController::class,'update'])->name('adminUserUpdate');
+            Route::get('delete/{id}',[AdminUserController::class,'destroy'])->name('adminUserDelete');
+            Route::get('show/{id}', [AdminUserController::class, 'show'])->name('adminUserShow');
+            Route::get('user-role/{id}', [AdminUserController::class, 'userRoles'])->name('adminUserRoles');
+            Route::post('user-role-store/{id}', [AdminUserController::class, 'userRoleStore'])->name('adminUserRoleAdd');
+            Route::get('user-role-delete/{userid}/{roleid}', [AdminUserController::class, 'userRoleDelete'])->name('adminUserRoleDelete');
         });
     });//admin middleware
 
