@@ -50,9 +50,6 @@
                 <div class="col-md-8 clearfix">
                     <div class="shop-menu clearfix pull-right">
                         <ul class="nav navbar-nav">
-
-                            <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="{{route('userShopcart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             @auth
                                 <li><a href="{{route('myProfile')}}"><i class="fa fa-user"></i> {{Auth::user()->name}}
@@ -88,9 +85,9 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="{{route('home')}}" class="active">Home</a></li>
-                            <li><a href="{{route('home')}}">Campains</a></li>
-                            <li><a href="{{route('home')}}">New Products</a></li>
+                            <li><a href="{{route('home')}}" class="">Home</a></li>
+                            <li><a href="{{route('products')}}">Products</a></li>
+                            <li><a href="{{route('userProductCreate')}}">Sell Product</a></li>
                             <li><a href="{{route('faq')}}">FAQ</a></li>
                             <li><a href="{{route('references')}}">References</a></li>
                             <li><a href="{{route('aboutUs')}}">About Us</a></li>

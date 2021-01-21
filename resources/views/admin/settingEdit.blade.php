@@ -11,7 +11,9 @@
                 <h3>Edit Settings</h3>
             </div>
         </div>
+
         <div class="clearfix"></div>
+        @include('home.message')
         <form action="{{route('adminSettingUpdate')}}" method="post" data-parsley-validate
               class="form-horizontal form-label-left" enctype="multipart/form-data">
             @csrf

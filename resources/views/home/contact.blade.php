@@ -4,12 +4,6 @@
 @section('keywords', $setting->keywords)
 @section('content')
     <div id="contact-page" class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-                <li><a href="{{route('home')}}">Home</a></li>
-                <li class="active">Contact</li>
-            </ol>
-        </div>
         <div class="bg">
             <div class="row">
                 <div class="col-sm-12">
@@ -30,7 +24,7 @@
                                 <input type="text" name="name" class="form-control" required="required" placeholder="Name & Surname">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                                <input type="email" name="email" class="form-control" required="required" placeholder="Email" @if($email) value="{{$email}}"@endif>
                             </div>
                             <div class="form-group col-md-12">
                                 <input type="text" name="phone" class="form-control" required="required" placeholder="Phone">

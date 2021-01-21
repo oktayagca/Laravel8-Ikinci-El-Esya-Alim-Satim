@@ -1,14 +1,17 @@
 @extends('layouts.home')
-@section('title', $data->title ." Product List")
-@section('description'){{$data->description}}@endsection
-@section('keywords', $data->keywords)
+@section('title',"Product List")
+@section('description','Product List')
+@section('keywords', "Product List")
 @section('categories')
     @include('home._category')
+@endsection
+@section('priceRange')
+    @include('home._priceRange')
 @endsection
 @section('content')
     <div class="col-sm-9 padding-right">
         <div class="features_items"><!--features_items-->
-            <h2 class="title text-center">{{$data->title}} Products</h2>
+            <h2 class="title text-center">All Products</h2>
             @foreach($dataList as $rs)
             <div class="col-sm-4">
                 <div class="product-image-wrapper">

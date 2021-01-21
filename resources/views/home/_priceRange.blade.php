@@ -1,7 +1,25 @@
-<div class="price-range"><!--price-range-->
-    <h2>Price Range</h2>
-    <div class="well text-center">
-        <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-        <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+<div>
+<form action="{{route('productsWithPrice')}}" method="post">
+    @csrf
+<div class="form-row">
+
+    <div class="form-group col-md-6">
+        <label for="price-range" class="control-label">Min price</label>
+        <input name="minPrice" type="text" class="form-control minPrice" placeholder="From">
     </div>
-</div><!--/price-range-->
+
+    <div class="form-group col-md-6">
+        <label for="price-range" class="control-label">Max price</label>
+        <input name="maxPrice" type="text" class="form-control maxPrice" placeholder="To">
+    </div>
+
+</div>
+<!-- END OF PRICE RANGE FORM -->
+<div class="form-row">
+    <div class="col-md-12">
+        <button class="market-search-submit form-control"> Search </button>
+    </div>
+</div>
+
+</form>
+</div>
