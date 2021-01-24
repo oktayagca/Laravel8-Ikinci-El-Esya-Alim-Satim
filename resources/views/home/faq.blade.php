@@ -1,9 +1,18 @@
 @extends('layouts.home')
-@section('title','Frequently Asked Question ')
+@section('title','Frequently Asked Question-'. $setting->title)
+@section('description'){{$setting->description}}@endsection
+@section('keywords', $setting->keywords)
 @section('menu')
 @endsection
 @section('content')
     <div class="col-sm-12 padding-right">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="title text-center"><strong>Frequently Asked Question</strong></h2>
+                <div id="gmap" class="">
+                </div>
+            </div>
+        </div>
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             @foreach($dataList as $rs)
                 <div class="panel panel-default">

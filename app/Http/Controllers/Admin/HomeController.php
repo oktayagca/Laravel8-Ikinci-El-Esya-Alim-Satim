@@ -25,7 +25,7 @@ class HomeController extends Controller
     }
     public static function newProducts()
     {
-        return Product::where('status', 'false')->get();
+        return Product::where('status', 'new')->get();
     }
     public static function userCount()
     {

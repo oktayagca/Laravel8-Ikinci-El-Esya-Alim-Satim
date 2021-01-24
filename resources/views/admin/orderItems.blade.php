@@ -180,7 +180,7 @@
                                                     </td>
                                                     <td>
                                                         <h4>
-                                                            <a href="{{route('product',['id'=>$rs->product_id,'title'=>$rs->product->title])}}">{{substr($rs->product->title,0,20)}}</a>
+                                                            <a target="_blank" href="{{route('adminProductEdit',['id'=>$rs->product->id])}}">{{$rs->product->title}}</a>
                                                         </h4>
                                                         <p>Product Id: {{$rs->product_id}}</p>
                                                     </td>

@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
                 <a href="{{route('adminComment')}}"><span class="count_top"><i class="fa fa-comments-o"></i> Total Comments</span></a>
-                <div class="count green">{{$commentCount}}</div>
+                <div class="count">{{$commentCount}}</div>
                 <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
@@ -118,7 +118,7 @@
                                                    ;>{{$rs->subject}}</a>
                                             </h2>
                                             <div class="byline">
-                                                    {{$rs->name}}
+                                                <span>{{$rs->created_at}}</span> by   {{$rs->name}}
                                             </div>
                                             <p class="excerpt">
                                                 {{$rs->message}}

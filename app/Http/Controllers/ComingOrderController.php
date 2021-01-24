@@ -26,7 +26,7 @@ class ComingOrderController extends Controller
             }
         }
 
-        return view('home.userComingOrder',['dataList'=>$dataList2]);
+        return view('home.userComingOrder',['dataList'=>$dataList2,'status'=>'All']);
 
     }
 

@@ -49,14 +49,40 @@
                 </div>
                 <div class="col-md-8 clearfix">
                     <div class="shop-menu clearfix pull-right">
-                        <ul class="nav navbar-nav">
-                            <li><a href="{{route('userShopcart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+
                             @auth
-                                <li><a href="{{route('myProfile')}}"><i class="fa fa-user"></i> {{Auth::user()->name}}
-                                    </a></li>
+                                @php
+                                    $userRoles = Auth::user()->roles->pluck('name');
+                                @endphp
+                                <li><a href="{{route('userShopcart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
+                                </li>
+                                <li class="dropdown"><a href="#"><i class="fa fa-user"></i> {{Auth::user()->name}}<i
+                                            class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a style="background-color: #696763" href="{{route('myProfile')}}">My
+                                                Profile</a></li>
+                                        <li><a style="background-color: #696763" href="{{route('myComments')}}">My
+                                                Comments</a></li>
+                                        <li><a style="background-color: #696763" href="{{route('userOrders')}}">My
+                                                Orders</a></li>
+                                        @if($userRoles->contains('seller'))
+                                        <li><a style="background-color: #696763" href="{{route('userProducts')}}">My
+                                                Products</a></li>
+                                        <li><a style="background-color: #696763" href="{{route('userComingOrders')}}">Coming
+                                                Orders</a></li>
+                                        @endif
+                                        @if($userRoles->contains('admin'))
+                                            <li><a style="background-color: #696763" href="{{route('adminHome')}}">Admin Panel</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
                                 <li><a href="{{route('logout')}}"><i class="fa fa-unlock"></i> Logout</a></li>
                             @endauth
+
                             @guest()
+                                <li><a href="{{route('userShopcart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
+                                </li>
                                 <li><a href="/login"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="/login"><i
                                             class="fa fa-lock"></i> Login</a></li>
@@ -102,17 +128,18 @@
                             <form action="{{route('getProduct')}}" method="post">
                                 @csrf
                                 <div class="search_box pull-right">
-                                <div class="form-group col-md-8">
-                                    @livewire('search')
-                                </div>
-                                <div class="form-group col-md-4 ">
-                                    <button type="submit" class="search-button-link"><i class="fa fa-search"></i></button>
-                                </div>
+                                    <div class="form-group col-md-8">
+                                        @livewire('search')
+                                    </div>
+                                    <div class="form-group col-md-4 ">
+                                        <button type="submit" class="search-button-link"><i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
 
-                            @livewireScripts
+                        @livewireScripts
 
                     </div>
                 </div>

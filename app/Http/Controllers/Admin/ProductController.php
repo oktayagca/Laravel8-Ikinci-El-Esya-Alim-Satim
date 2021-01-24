@@ -44,6 +44,7 @@ class ProductController extends Controller
     {
         $data = new Product();
         $data->title =$request->input('title');
+        $data->brand = $request->input('brand');
         $data->keywords =$request->input('keywords');
         $data->description =$request->input('description');
         $data->slug =$request->input('slug');
@@ -51,9 +52,8 @@ class ProductController extends Controller
         $data->category_id =$request->input('category_id');
         $data->user_id =Auth::id();
         $data->price =$request->input('price');
+        $data->warranty_status = $request->input('warrantyStatus');
         $data->quantity =$request->input('quantity');
-        $data->minQuantity =$request->input('minQuantity');
-        $data->tax =$request->input('tax');
         $data->location =$request->input('location');
         $data->detail =$request->input('detail');
         if($request->file('image')) {
@@ -99,15 +99,14 @@ class ProductController extends Controller
     {
         $data = Product::find($id);
         $data->title =$request->input('title');
+        $data->brand = $request->input('brand');
         $data->keywords =$request->input('keywords');
         $data->description =$request->input('description');
         $data->slug =$request->input('slug');
         $data->status =$request->input('status');
         $data->category_id =$request->input('category_id');
-        $data->user_id =Auth::id();
         $data->price =$request->input('price');
-        $data->quantity =$request->input('quantity');
-        $data->minQuantity =$request->input('minQuantity');
+        $data->warranty_status = $request->input('warrantyStatus');
         $data->tax =$request->input('tax');
         $data->location =$request->input('location');
         $data->detail =$request->input('detail');

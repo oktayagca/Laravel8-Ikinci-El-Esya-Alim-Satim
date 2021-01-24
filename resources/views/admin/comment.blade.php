@@ -64,7 +64,7 @@
                                                                         </a></td>
 
                                                                     <td>
-                                                                        <a target="_blank" href="{{route('product',['id'=>$rs->product->id,'title'=>$rs->Product->title])}}">{{$rs->product->title}}</a>
+                                                                        <a target="_blank" href="{{route('adminProductEdit',['id'=>$rs->product->id])}}">{{$rs->product->title}}</a>
                                                                     </td>
                                                                     <td>{{$rs->subject}}</td>
                                                                     <td>{{$rs->comment}}</td>

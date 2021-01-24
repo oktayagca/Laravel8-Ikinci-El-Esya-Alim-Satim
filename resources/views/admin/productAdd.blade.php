@@ -46,6 +46,12 @@
                                         </div>
                                     </div>
                                     <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Brand</label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input type="text" id="brand" name="brand" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Keywords </label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <input id="keywords" name="keywords" class="form-control" type="text">
@@ -71,17 +77,9 @@
                                         </div>
                                     </div>
                                     <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Minimum
-                                            Quantity</label>
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Warranty status</label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input name="minQuantity" id="minQuantity" class="form-control"
-                                                   type="number" value="1">
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Tax</label>
-                                        <div class="col-md-6 col-sm-6 ">
-                                            <input name="tax" id="tax" class="form-control" type="number" value="18">
+                                            <input name="warrantyStatus" id="warrantyStatus" class="form-control" type="text">
                                         </div>
                                     </div>
                                     <div class="item form-group">

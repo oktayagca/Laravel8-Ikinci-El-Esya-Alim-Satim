@@ -46,6 +46,12 @@
                                         </div>
                                     </div>
                                     <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Brand</label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input type="text" id="brand" name="brand" class="form-control"value="{{$data->brand}}">
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Keywords </label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <input id="keywords" name="keywords" class="form-control" type="text" value="{{$data->keywords}}">
@@ -70,15 +76,9 @@
                                         </div>
                                     </div>
                                     <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Minimum Quantity</label>
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Warranty status</label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input name="minQuantity" id="minQuantity" class="form-control" type="number" value="{{$data->minQuantity}}">
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Tax</label>
-                                        <div class="col-md-6 col-sm-6 ">
-                                            <input name="tax" id="tax" class="form-control" type="number" value="{{$data->tax}}">
+                                            <input name="warrantyStatus" id="warrantyStatus" class="form-control" type="text" value="{{$data->warranty_status}}">
                                         </div>
                                     </div>
                                     <div class="item form-group">

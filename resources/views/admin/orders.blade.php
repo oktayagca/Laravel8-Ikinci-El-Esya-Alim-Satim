@@ -47,7 +47,10 @@
 
                                                                 <tr role="row" class="odd">
                                                                     <td class="sorting_1">{{$rs->id}}</td>
-                                                                    <td>{{$rs->user->name}}</td>
+                                                                    <td><a href="{{route('adminUserShow',['id'=>$rs->user->id])}}"
+                                                                           onclick=" return !window.open(this.href, '',',height=700,width=1100,top=50,left=100')";>
+                                                                            {{$rs->user->name}}
+                                                                        </a></td></td>
                                                                     <td>{{$rs->name}}</td>
                                                                     <td>{{$rs->phone}}</td>
                                                                     <td>{{$rs->email}}</td>

@@ -34,15 +34,9 @@
                 </div>
             </div>
             <div class="item form-group" style="padding: 0px">
-                <label class="col-form-label col-md-2 col-sm-3 label-align">Keywords </label>
+                <label class="col-form-label col-md-2 col-sm-3 label-align">Brand</label>
                 <div class="col-md-9 col-sm-9 ">
-                    <input id="keywords" name="keywords" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="item form-group" style="padding: 0px">
-                <label class="col-form-label col-md-2 col-sm-3 label-align">Description</label>
-                <div class="col-md-9 col-sm-9 ">
-                    <input id="description" name="description" class="form-control" type="text">
+                    <input name="brand" id="brand" class="form-control" type="text">
                 </div>
             </div>
             <div class="item form-group" style="padding: 0px">
@@ -59,17 +53,9 @@
                 </div>
             </div>
             <div class="item form-group" style="padding: 0px">
-                <label class="col-form-label col-md-2 col-sm-3 label-align">Minimum
-                    Quantity</label>
+                <label class="col-form-label col-md-2 col-sm-3 label-align">Warranty status</label>
                 <div class="col-md-9 col-sm-9 ">
-                    <input name="minQuantity" id="minQuantity" class="form-control"
-                           type="number" value="1">
-                </div>
-            </div>
-            <div class="item form-group" style="padding: 0px">
-                <label class="col-form-label col-md-2 col-sm-3 label-align">Tax</label>
-                <div class="col-md-9 col-sm-9 ">
-                    <input name="tax" id="tax" class="form-control" type="number" value="18">
+                    <input name="warrantyStatus" id="warrantyStatus" class="form-control" type="text">
                 </div>
             </div>
             <div class="item form-group" style="padding: 0px">

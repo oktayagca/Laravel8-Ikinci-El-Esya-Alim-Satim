@@ -6,9 +6,9 @@
                     <div class="col-sm-12 padding-right">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            @if(count($subcategory->children)) <a data-toggle="collapse"  href="#{{$subcategory->id}}"><span class="badge pull-right"> <i
-                                        class="fa fa-plus"></i> </span></a>@endif
-                            <a  href="www.google.com">
+                            <a data-toggle="collapse"  href="#{{$subcategory->id}}"><span class="badge pull-right"> <i
+                                        class="fa fa-plus"></i> </span></a>
+                            <a href="{{route('categoryProducts',['id'=>$subcategory->id,'slug'=>$subcategory->title])}}" >
                                 {{$subcategory->title}}
                             </a>
                         </h4>

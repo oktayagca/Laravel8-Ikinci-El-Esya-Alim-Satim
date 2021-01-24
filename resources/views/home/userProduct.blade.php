@@ -69,7 +69,7 @@
                                                                                     src="{{asset('assets/admin/images')}}/gallery.png"
                                                                                     height="30"> </a>
                                                                         </td>
-                                                                        <td>@if($rs->status=='False') The product is not approved yet @else Product on display @endif</td>
+                                                                        <td>@if($rs->status=='New') The product is not approved yet @elseif($rs->status=='False') Canceled @else Product on display @endif</td>
                                                                         <td>
                                                                             <a href="{{route('userProductEdit',['id'=>$rs->id])}}"><i
                                                                                     class="fa fa-edit"></i></a></td>

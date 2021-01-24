@@ -25,7 +25,7 @@
                     @endif
 
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('myProfile')}}"> Profile</a>
+                        <a class="dropdown-item" href="{{route('home')}}"> Web Site Home Page</a>
                         <a class="dropdown-item" href="{{route('adminSetting')}}">
                             <span>Settings</span>
                         </a>

@@ -1,4 +1,7 @@
 @extends('layouts.home')
+@section('title',"Search Product-".$setting->title)
+@section('description'){{$setting->description}}@endsection
+@section('keywords', $setting->keywords)
 @section('categories')
     @include('home._category')
 @endsection
@@ -15,14 +18,14 @@
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <img  style="height: 249px" src="{{Storage::url($rs->image)}}" alt=""/>
-                            <h2>{{$rs->price}}</h2>
+                            <h2>{{$rs->price}}$</h2>
                             <p>{{substr($rs->title,0,101)}}</p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to
                                 cart</a>
                         </div>
                         <div class="product-overlay">
                             <div class="overlay-content">
-                                <h2>{{$rs->price}}</h2>
+                                <h2>{{$rs->price}}$</h2>
                                 <p>{{$rs->title}}</p>
                                 <a href="{{route('product',['id'=>$rs->id,'title'=>$rs->title])}}" class="btn btn-default add-to-cart">Quick View</a>
                             </div>
@@ -38,12 +41,6 @@
             </div>
             @endforeach
 
-            <ul class="pagination">
-                <li class="active"><a href="">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">&raquo;</a></li>
-            </ul>
         </div><!--features_items-->
     </div>
 

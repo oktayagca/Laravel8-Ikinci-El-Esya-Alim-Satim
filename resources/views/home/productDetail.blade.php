@@ -65,12 +65,15 @@
                              </div>
                                 </span>
                     </form>
-
-                    <p><b>Availability:</b> @if($data->status=='True')In Stock @else Sold out  @endif</p>
+                    <p><b>Category:</b> {{$data->category->title}}</p>
+                    <p><b>Brand:</b> {{$data->brand}}</p>
+                    <p><b>Availability:</b> @if($data->quantity>0)In Stock @else Sold out  @endif</p>
                     <p><b>Location:</b> {{$data->location}}</p>
                     <p><b>Quantity:</b> {{$data->quantity}}</p>
-                    <p><b>Brand:</b> E-SHOPPER</p>
-                    <p><b>Description:</b> {{$data->description}}</p>
+                    <p><b>Warranty status:</b> {{$data->warranty_status}}</p>
+                    <p><b>Seller:</b>{{$data->user->name}} </p>
+                    <p><b>Tel:</b>{{$data->user->phone}} </p>
+
                     @php
                         $avgrev = \App\Http\Controllers\HomeController::avrgreview($data->id);
                         $countreview = \App\Http\Controllers\HomeController::countreview($data->id);
@@ -99,6 +102,7 @@
                 <div class="tab-pane fade " id="reviews">
                     <div class="col-sm-12">
                         <div class="col-sm-6">
+                            @if(count($reviews))
                             @foreach($reviews as $rs)
                                 <div class="col-sm-12">
                                     <ul>
@@ -116,6 +120,9 @@
                                     <p>{{$rs->comment}}</p>
                                 </div>
                             @endforeach
+                            @else
+                                <p>No comments yet</p>
+                            @endif
                         </div>
 
                         <div class="col-sm-6">

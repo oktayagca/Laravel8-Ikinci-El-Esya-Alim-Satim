@@ -20,7 +20,7 @@ class HomeController extends Controller
 {
     public static function categorylist()
     {
-        return Category::where('parent_id', '=', 0)->with('children')->get();
+        return Category::where('parent_id', '=', 0)->where('status', 'True')->with('children')->get();
     }
 
     public static function getSetting()
@@ -40,21 +40,21 @@ class HomeController extends Controller
 
     public static function footerProduct()
     {
-        return Product::select('id', 'title', 'image', 'price', 'slug')->limit(4)->inRandomOrder()->get();
+        return Product::select('id', 'title', 'image', 'price', 'slug')->where('status', 'True')->limit(4)->inRandomOrder()->get();
     }
 
     public function index()
     {
         $setting = Setting::first();
-        $slider = Product::select('id', 'title', 'image', 'price', 'slug')->limit(4)->inRandomOrder()->get();
-        $daily = Product::select('id', 'title', 'image', 'price', 'slug')->limit(3)->inRandomOrder()->get();
-        $last = Product::select('id', 'title', 'image', 'price', 'slug')->limit(3)->orderByDesc('id')->get();
-        $picked = Product::select('id', 'title', 'image', 'price', 'slug')->limit(3)->inRandomOrder()->get();
-        $picked2 = Product::select('id', 'title', 'image', 'price', 'slug')->limit(3)->inRandomOrder()->get();
+        $slider = Product::select('id', 'title', 'image', 'price', 'slug')->where('status', 'True')->limit(4)->inRandomOrder()->get();
+        $popular = Product::select('id', 'title', 'image', 'price', 'slug')->where('status', 'True')->limit(3)->inRandomOrder()->get();
+        $last = Product::select('id', 'title', 'image', 'price', 'slug')->where('status', 'True')->limit(3)->orderByDesc('updated_at')->get();
+        $picked = Product::select('id', 'title', 'image', 'price', 'slug')->where('status', 'True')->limit(3)->inRandomOrder()->get();
+        $picked2 = Product::select('id', 'title', 'image', 'price', 'slug')->where('status', 'True')->limit(3)->inRandomOrder()->get();
         $data = [
             'setting' => $setting,
             'slider' => $slider,
-            'daily' => $daily,
+            'popular' => $popular,
             'last' => $last,
             'picked' => $picked,
             'picked2' => $picked2
@@ -70,8 +70,9 @@ class HomeController extends Controller
 
     public function faq()
     {
-        $dataList = Faq::all()->sortBy('position');
-        return view('home.faq', ['dataList' => $dataList]);
+        $setting = Setting::first();
+        $dataList = Faq::where('status','True')->get()->sortBy('position');
+        return view('home.faq', ['dataList' => $dataList,'setting'=>$setting]);
     }
 
     public function contact()
@@ -112,15 +113,16 @@ class HomeController extends Controller
     {
         $data = Product::find($id);
         $dataList = Image::where('product_id', $id)->get();
-        $picked = Product::select('id', 'title', 'image', 'price', 'slug')->limit(3)->inRandomOrder()->get();
+        $picked = Product::select('id', 'title', 'image', 'price', 'slug')->where('status','True')->limit(3)->inRandomOrder()->get();
         $reviews = Comment::where('product_id', $id)->where('status', 'True')->orderByDesc('created_at')->get();
         return view('home.productDetail', ['data' => $data, 'dataList' => $dataList, 'picked' => $picked, 'reviews' => $reviews]);
     }
 
     public function products()
     {
-        $dataList = Product::all();
-        return view('home.allProducts', ['dataList' => $dataList]);
+        $setting = Setting::first();
+        $dataList = Product::where('status', 'True')->get();
+        return view('home.allProducts', ['dataList' => $dataList,'setting'=>$setting]);
     }
 
     public function productsWithPrice(Request $request)
@@ -130,14 +132,14 @@ class HomeController extends Controller
 
         if ($request->input('maxPrice') == null) {
             if ($request->input('minPrice') == null) {
-                $dataList = DB::table('products')
+                $dataList = DB::table('products')->where('status', '=','True')
                     ->where('price', '>=', 0)
                     ->where('price', '<=', 1000000)
                     ->get();
 
                 return view('home.allProducts', ['dataList' => $dataList]);
-            }else{
-                $dataList = DB::table('products')
+            } else {
+                $dataList = DB::table('products')->where('status', '=','True')
                     ->where('price', '>=', $min)
                     ->where('price', '<=', 1000000)
                     ->get();
@@ -145,14 +147,14 @@ class HomeController extends Controller
                 return view('home.allProducts', ['dataList' => $dataList]);
             }
         } elseif ($request->input('minPrice') == null) {
-            $dataList = DB::table('products')
+            $dataList = DB::table('products')->where('status', '=','True')
                 ->where('price', '>=', 0)
                 ->where('price', '<=', $max)
                 ->get();
             return view('home.allProducts', ['dataList' => $dataList]);
         } elseif ($request->input('maxPrice') != null) {
             if ($request->input('minPrice') != null) {
-                $dataList = DB::table('products')
+                $dataList = DB::table('products')->where('status', '=','True')
                     ->where('price', '>=', $min)
                     ->where('price', '<=', $max)
                     ->get();
@@ -163,7 +165,7 @@ class HomeController extends Controller
 
     public function categoryProducts($id, $slug)
     {
-        $dataList = Product::where('category_id', $id)->get();
+        $dataList = Product::where('category_id', $id)->where('status','True')->get();
         $data = Category::find($id);
         return view('home.categoryProducts', ['dataList' => $dataList, 'data' => $data]);
     }
@@ -171,9 +173,9 @@ class HomeController extends Controller
     public function getProduct(Request $request): \Illuminate\Http\RedirectResponse
     {
         $search = $request->input('search');
-        $count = Product::where('title', 'like', '%' . $search . '%')->get()->count();
+        $count = Product::where('title', 'like', '%' . $search . '%')->where('status','True')->get()->count();
         if ($count == 1) {
-            $data = Product::where('title', 'like', '%' . $search . '%')->first();
+            $data = Product::where('title', 'like', '%' . $search . '%')->where('status','True')->first();
             return redirect()->route('product', ['id' => $data->id, 'title' => $data->title]);
         } else {
             return redirect()->route('productList', ['search' => $search]);
@@ -183,12 +185,9 @@ class HomeController extends Controller
 
     public function productList($search)
     {
-        $dataList = Product::where('title', 'like', '%' . $search . '%')->get();
-        return view('home.searchProducts', ['search' => $search, 'dataList' => $dataList]);
-    }
-
-    public function addToCart()
-    {
+        $setting = Setting::first();
+        $dataList = Product::where('title', 'like', '%' . $search . '%')->where('status','True')->get();
+        return view('home.searchProducts', ['search' => $search, 'dataList' => $dataList,'setting'=>$setting]);
     }
 
     public function login()

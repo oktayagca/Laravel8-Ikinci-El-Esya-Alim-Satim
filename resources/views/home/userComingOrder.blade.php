@@ -1,5 +1,7 @@
 @extends('layouts.home')
-@section('title','My Orders')
+@section('title')
+    Coming {{$status}} Order List
+@endsection
 
 @section('menu')
     @parent

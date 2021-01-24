@@ -43,7 +43,7 @@
                             @csrf
                             <input name="email" type="text" placeholder="Your email address" />
                             <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                            <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                            <p>Contact us</p>
                         </form>
                     </div>
                 </div>

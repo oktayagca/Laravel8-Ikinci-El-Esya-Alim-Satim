@@ -29,7 +29,7 @@
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Title</label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input type="text" id="title" name="title" class="form-control">
+                                            <input type="text" id="title" name="title" class="form-control" value="New">
                                         </div>
                                     </div>
 
