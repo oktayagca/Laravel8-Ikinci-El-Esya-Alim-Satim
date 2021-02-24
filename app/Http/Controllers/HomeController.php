@@ -127,6 +127,7 @@ class HomeController extends Controller
 
     public function productsWithPrice(Request $request)
     {
+        $setting = Setting::first();
         $min = $request->input('minPrice');
         $max = $request->input('maxPrice');
 
@@ -158,7 +159,7 @@ class HomeController extends Controller
                     ->where('price', '>=', $min)
                     ->where('price', '<=', $max)
                     ->get();
-                return view('home.allProducts', ['dataList' => $dataList]);
+                return view('home.allProducts', ['dataList' => $dataList,'setting'=>$setting],);
             }
         }
     }
